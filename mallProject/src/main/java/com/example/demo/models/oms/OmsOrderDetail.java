@@ -85,6 +85,7 @@ public class OmsOrderDetail {
 	private Integer growth;
 
 	// 订单操作记录列表
+	@Column
 	private OmsOrderOperateHistory historyList;
 
 	// 订单id
@@ -114,6 +115,7 @@ public class OmsOrderDetail {
 	private String note;
 
 	// 订单商品列表
+	@Column
 	private OmsOrderItem orderItemList;
 
 	// 订单编号
