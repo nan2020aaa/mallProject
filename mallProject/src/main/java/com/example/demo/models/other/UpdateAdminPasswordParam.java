@@ -1,5 +1,29 @@
 package com.example.demo.models.other;
 
-public class UpdateAdminPasswordParam {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import lombok.Data;
+
+@Entity
+@Data
+public class UpdateAdminPasswordParam {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	//新密码
+	@Column
+	private String newPassword;
+	
+	//旧密码
+	@Column
+	private String oldPassword;
+	
+	//用户名
+	@Column
+	private String username;
 }
