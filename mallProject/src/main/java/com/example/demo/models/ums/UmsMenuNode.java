@@ -1,18 +1,21 @@
 package com.example.demo.models.ums;
 
+import java.util.List;
+
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 @Data
-@Entity
-@SuperBuilder
 @NoArgsConstructor
-public class UmsMenu {
+@AllArgsConstructor
+public class UmsMenuNode {
+	@Column
+	private List<Object> children;
+	
 	//创建时间
 	@Column
 	private String createTime;

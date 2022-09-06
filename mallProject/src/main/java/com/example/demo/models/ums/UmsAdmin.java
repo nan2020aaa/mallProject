@@ -12,39 +12,41 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @SuperBuilder
 @NoArgsConstructor
-public class UmsMenu {
+public class UmsAdmin {
 	//创建时间
 	@Column
 	private String createTime;
 	
-	//前端隐藏
+	//邮箱
 	@Column
-	private Integer hidden;
+	private String email;
 	
-	//前端图标
+	//头像
 	@Column
 	private String icon;
 	
 	@Id
 	private Long id;
 	
-	//菜单级数
+	//最后登录时间
 	@Column
-	private Integer level;
+	private String loginTime;
 	
-	//前端名称
+	//昵称
 	@Column
-	private String name;
+	private String nickName;
 	
-	//父级ID
-	@Id
-	private Long parentId;
-	
-	//菜单排序
+	//备注信息
 	@Column
-	private Integer sort;
+	private String note;
 	
-	//菜单名称
 	@Column
-	private String title;
+	private String password;
+	
+	//账号启用状态：0->禁用；1->启用
+	@Column
+	private Integer status;
+	
+	@Column
+	private String username;
 }
