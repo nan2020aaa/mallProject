@@ -10,20 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-public class CmsPrefrenceArea {
-	//展示图片
+public class CmsSubjectProductRelation {
 	@Id
 	private Long id;
-	@Column
-	private String name;
-	@Column
-	private String pic;
-	
-	@Column
-	private Integer showStatus;
-	@Column
-	private Integer sort;
-	@Column
-	private String subTitle;
-
+	@Id
+	private Long productId;
+	@Id
+	private Long subjectId;
 }
