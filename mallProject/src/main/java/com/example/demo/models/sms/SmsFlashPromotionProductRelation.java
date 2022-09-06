@@ -16,25 +16,32 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class SmsFlashPromotion {
-	// 秒杀时间段名称
+public class SmsFlashPromotionProductRelation {
+	// 限时购数量
 	@Column
-	private Date createTime;
+	private Integer flashPromotionCount;
 
-	// 结束日期
+	// 每人限购数量
+	@Id
+	private Long flashPromotionId;
 	@Column
-	private Date endDate;
+	private Integer flashPromotionLimit;
 
-	// 开始日期
+	// 限时购价格
+	@Column
+	private Number flashPromotionPrice;
+
+	// 编号
+	@Id
+	private Long flashPromotionSessionId;
+
+	// 编号
 	@Id
 	private Long id;
-	@Column
-	private Date startDate;
 
-	// 上下线状态
+	// 排序
+	@Id
+	private Long productId;
 	@Column
-	private Integer status;
-
-	@Column
-	private String title;
+	private Integer sort;
 }

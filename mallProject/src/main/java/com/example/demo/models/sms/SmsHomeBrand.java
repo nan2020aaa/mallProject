@@ -16,25 +16,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class SmsFlashPromotion {
-	// 秒杀时间段名称
+public class SmsHomeBrand {
+	@Id
+	private Long brandId;
 	@Column
-	private Date createTime;
-
-	// 结束日期
-	@Column
-	private Date endDate;
-
-	// 开始日期
+	private String brandName;
 	@Id
 	private Long id;
 	@Column
-	private Date startDate;
-
-	// 上下线状态
+	private Integer recommendStatus;
 	@Column
-	private Integer status;
+	private Integer sort;
 
-	@Column
-	private String title;
 }
