@@ -18,5 +18,6 @@ public class PmsProductFullReduction {
 	@Id
 	private Integer productId;
 	@Column
+
 	private Double reducePrice;
 }
