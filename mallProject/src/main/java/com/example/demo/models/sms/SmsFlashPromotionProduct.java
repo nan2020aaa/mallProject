@@ -1,14 +1,9 @@
 package com.example.demo.models.sms;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import com.example.demo.models.oms.OmsOrderDetail;
-import com.example.demo.models.oms.OmsOrderItem;
-import com.example.demo.models.oms.OmsOrderOperateHistory;
 import com.example.demo.models.pms.PmsProduct;
 
 import lombok.Data;
