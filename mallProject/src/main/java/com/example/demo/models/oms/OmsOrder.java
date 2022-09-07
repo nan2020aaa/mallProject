@@ -46,7 +46,7 @@ public class OmsOrder {
 
 	// 优惠券抵扣金额
 	@Column
-	private Number couponAmount;
+	private Double couponAmount;
 
 	// 提交时间
 	@Id
@@ -72,11 +72,11 @@ public class OmsOrder {
 
 	// 管理员后台调整订单使用的折扣金额
 	@Column
-	private double discountAmount;
+	private Double discountAmount;
 
 	// 运费金额
 	@Column
-	private double freightAmount;
+	private Double freightAmount;
 
 	// 可以活动的成长值
 	@Column
@@ -92,7 +92,7 @@ public class OmsOrder {
 
 	// 积分抵扣金额
 	@Column
-	private double integrationAmount;
+	private Double integrationAmount;
 
 	// 用户帐号
 	@Id
@@ -118,7 +118,7 @@ public class OmsOrder {
 
 	// 应付金额（实际支付金额）
 	@Column
-	private double payAmount;
+	private Double payAmount;
 
 	// 支付方式：0->未支付；1->支付宝；2->微信
 	@Column
@@ -130,7 +130,7 @@ public class OmsOrder {
 
 	// 促销优化金额（促销价、满减、阶梯价）
 	@Column
-	private double promotionAmount;
+	private Double promotionAmount;
 
 	// 活动信息
 	@Column
@@ -178,7 +178,7 @@ public class OmsOrder {
 
 	// 订单总金额
 	@Column
-	private double totalAmount;
+	private Double totalAmount;
 
 	// 下单时使用的积分
 	@Column

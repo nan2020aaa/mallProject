@@ -1,7 +1,5 @@
 package com.example.demo.models.oms;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class OmsOrderItem {
 	//优惠券优惠分解金额
 	@Column
-	private Number couponAmount;
+	private Double couponAmount;
 
 	//积分优惠分解金额
 	@Column
@@ -25,7 +23,7 @@ public class OmsOrderItem {
 	@Id
 	private Long id;
 	@Column
-	private Number integrationAmount;
+	private Double integrationAmount;
 
 	//订单id
 	@Id
@@ -53,7 +51,7 @@ public class OmsOrderItem {
 	@Column
 	private String productPic;
 	@Column
-	private Number productPrice;
+	private Double productPrice;
 
 	//购买数量
 	@Column
@@ -71,7 +69,7 @@ public class OmsOrderItem {
 	@Column
 	private String productSn;
 	@Column
-	private Number promotionAmount;
+	private Double promotionAmount;
 
 	//商品促销名称
 	@Column
@@ -79,5 +77,5 @@ public class OmsOrderItem {
 
 	//该商品经过优惠后的分解金额
 	@Column
-	private Number realAmount;
+	private Double realAmount;
 }

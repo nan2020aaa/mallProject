@@ -14,11 +14,11 @@ public class OmsMoneyInfoParam {
 
 	// 管理员后台调整订单所使用的折扣金额
 	@Column
-	private Number discountAmount;
+	private Double discountAmount;
 
 	// 运费金额
 	@Column
-	private Number freightAmount;
+	private Double freightAmount;
 
 	// 订单ID
 	@Id

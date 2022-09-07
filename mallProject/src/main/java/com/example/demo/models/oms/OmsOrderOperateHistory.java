@@ -1,7 +1,5 @@
 package com.example.demo.models.oms;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class OmsOrderOperateHistory {
 	// 操作时间
 	@Column
-	private Date createTime;
+	private String createTime;
 
 	// 备注
 	@Id
