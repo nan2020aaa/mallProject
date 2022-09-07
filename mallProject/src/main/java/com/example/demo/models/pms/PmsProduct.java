@@ -69,7 +69,7 @@ public class PmsProduct {
 	@Column
 	private String note;
 	@Column
-	private Number originalPrice;
+	private double originalPrice;
 
 	// 是否为预告商品：0->不是；1->是
 	@Column
@@ -79,7 +79,7 @@ public class PmsProduct {
 
 	// 商品分类名称
 	@Column
-	private Number price;
+	private double price;
 	@Id
 	private Long productAttributeCategoryId;
 	@Id
@@ -101,7 +101,7 @@ public class PmsProduct {
 
 	// 促销价格
 	@Column
-	private Number promotionPrice;
+	private double promotionPrice;
 
 	// 促销开始时间
 	@Column
@@ -153,5 +153,5 @@ public class PmsProduct {
 
 	// 商品重量，默认为克
 	@Column
-	private Number weight;
+	private double weight;
 }

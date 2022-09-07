@@ -68,7 +68,7 @@ public class PmsProductParam {
 	private String note;
 	
 	//市场价
-	private double originalPrice;
+	private Double originalPrice;
 	
 	private String pic;
 	
@@ -78,7 +78,7 @@ public class PmsProductParam {
 	//是否为预告商品：0->不是；1->是
 	private Integer previewStatus;
 	
-	private double price;
+	private Double price;
 	
 	private Long productAttributeCategoryId;
 	
@@ -106,7 +106,7 @@ public class PmsProductParam {
 	private Integer promotionPerLimit;
 	
 	//促销价格
-	private double promotionPrice;
+	private Double promotionPrice;
 	
 	//促销开始时间
 	private String promotionStartTime;
@@ -151,5 +151,5 @@ public class PmsProductParam {
 	private Integer veryfyStatus;
 	
 	//商品重量，默认为克
-	private double weight;
+	private Double weight;
 }

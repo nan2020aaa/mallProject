@@ -61,7 +61,7 @@ public class PmsProductResult {
 
 	// 市场价
 	private String note;
-	private Number originalPrice;
+	private double originalPrice;
 
 	// 是否为预告商品：0->不是；1->是
 	private String pic;
@@ -69,7 +69,7 @@ public class PmsProductResult {
 	private Integer previewStatus;
 
 	// 商品分类名称
-	private Number price;
+	private double price;
 	@Id
 	private Long productAttributeCategoryId;
 	private PmsProductAttributeValue productAttributeValueList;
@@ -93,7 +93,7 @@ public class PmsProductResult {
 	private Integer promotionPerLimit;
 
 	// 促销价格
-	private Number promotionPrice;
+	private double promotionPrice;
 
 	// 促销开始时间
 	private String promotionStartTime;
@@ -138,5 +138,5 @@ public class PmsProductResult {
 	private Integer verifyStatus;
 
 	// 商品重量，默认为克
-	private Number weight;
+	private double weight;
 }

@@ -1,7 +1,5 @@
 package com.example.demo.models.pms;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -29,11 +27,11 @@ public class PmsSkuStock {
 
 	// 单品促销价格
 	@Column
-	private Number price;
+	private double price;
 	@Id
 	private Long productId;
 	@Column
-	private Number promotionPrice;
+	private double promotionPrice;
 
 	// 销量
 	@Column

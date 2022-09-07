@@ -25,7 +25,7 @@ public class SmsFlashPromotionProduct {
 
 	// 限时购价格
 	@Column
-	private Number flashPromotionPrice;
+	private Double flashPromotionPrice;
 
 	// 编号
 	@Id
