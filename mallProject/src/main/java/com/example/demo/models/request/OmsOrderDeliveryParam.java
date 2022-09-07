@@ -7,20 +7,20 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
+//@Entity
+//@Data
+//@NoArgsConstructor
 public class OmsOrderDeliveryParam {
 
 	// 物流公司
-	@Column
+	//@Column
 	private String deliveryCompany;
 
 	// 物流单号
-	@Column
+	//@Column
 	private String deliverySn;
 
 	// 订单id
-	@Id
+	//@Id
 	private Long orderId;
 }

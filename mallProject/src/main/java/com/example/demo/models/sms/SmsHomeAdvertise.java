@@ -7,45 +7,45 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
+//@Entity
+//@Data
+//@NoArgsConstructor
 public class SmsHomeAdvertise {
 	// 点击数
-	@Column
+	//@Column
 	private Integer clickCount;
 
 	// 备注
-	@Column
+	//@Column
 	private String endTime;
-	@Id
+	//@Id
 	private Long id;
-	@Column
+	//@Column
 	private String name;
-	@Column
+	//@Column
 	private String note;
 
 	// 下单数
-	@Column
+	//@Column
 	private Integer orderCount;
 
 	// 排序
-	@Column
+	//@Column
 	private String pic;
-	@Column
+	//@Column
 	private Integer sort;
 
 	// 上下线状态：0->下线；1->上线
-	@Column
+	//@Column
 	private String startTime;
-	@Column
+	//@Column
 	private Integer status;
 
 	// 轮播位置：0->PC首页轮播；1->app首页轮播
-	@Column
+	//@Column
 	private Integer type;
 
 	// 链接地址
-	@Column
+	//@Column
 	private String url;
 }

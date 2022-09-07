@@ -7,30 +7,30 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class UmsResource {
 	//资源分类ID
-	@Id
+	//@Id
 	private Long categoryId;
 	
 	//创建时间
-	@Column
+	//@Column
 	private String createTime;
 	
 	//描述
-	@Column
+	//@Column
 	private String description;
 	
-	@Id
+	//@Id
 	private Long id;
 	
 	//资源名称
-	@Column
+	//@Column
 	private String name;
 	
 	//资源URL
-	@Column
+	//@Column
 	private String url;
 }

@@ -7,17 +7,17 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@Entity
+//@Data
+//@NoArgsConstructor
+//@Entity
 public class PmsProductFullReduction {
-	@Column
+	//@Column
 	private Double fullPrice;
-	@Id
+	//@Id
 	private Long id;
-	@Id
+	//@Id
 	private Integer productId;
-	@Column
+	//@Column
 
 	private Double reducePrice;
 }

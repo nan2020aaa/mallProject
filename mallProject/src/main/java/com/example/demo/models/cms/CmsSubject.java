@@ -7,53 +7,53 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@Entity
+//@Data
+//@NoArgsConstructor
+//@Entity
 public class CmsSubject {
 	//画册图片用逗号分割
-	@Column
+	//@Column
 	private String albumPics;
 	
 	//专题分类名称
-	@Id
+	//@Id
 	private Long categoryId;
-	@Column
+	//@Column
 	private String categoryName;
 	
 	//转发数
-	@Column
+	//@Column
 	private Integer collectCount;
-	@Column
+	//@Column
 	private Integer commentCount;
-	@Column
+	//@Column
 	private String content;
-	@Column
+	//@Column
 	private String createTime;
-	@Column
+	//@Column
 	private String description;
-	@Column
+	//@Column
 	private Integer forwardCount;
 	
 	//专题主图
-	@Id
+	//@Id
 	private Long id;
-	@Column
+	//@Column
 	private String pic;
 	
 	//关联产品数量
-	@Column
+	//@Column
 	private Integer productCount;
 	
 	//显示状态：0->不显示；1->显示
-	@Column
+	//@Column
 	private Integer readCount;
-	@Column
+	//@Column
 	private Integer recommendStatus;
-	@Column
+	//@Column
 	private Integer showStatus;
 	
-	@Column
+	//@Column
 	private String title;
 	
 

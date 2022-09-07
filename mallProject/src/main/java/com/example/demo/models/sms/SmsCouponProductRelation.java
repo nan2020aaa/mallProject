@@ -7,21 +7,21 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
+//@Entity
+//@Data
+//@NoArgsConstructor
 public class SmsCouponProductRelation {
 	// 商品名称
-	@Id
+	//@Id
 	private Long couponId;
-	@Id
+	//@Id
 	private Long id;
-	@Id
+	//@Id
 	private Long productId;
-	@Column
+	//@Column
 	private String productName;
 
 	// 商品编码
-	@Column
+	//@Column
 	private String productSn;
 }

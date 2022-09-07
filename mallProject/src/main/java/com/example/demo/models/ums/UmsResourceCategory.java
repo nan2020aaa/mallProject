@@ -7,22 +7,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class UmsResourceCategory {
 	//创建时间
-	@Column
+	//@Column
 	private String createTime;
 	
-	@Id
+	//@Id
 	private Long id;
 	
 	//分类名称
-	@Column
+	//@Column
 	private String name;
 	
 	//排序
-	@Column
+	//@Column
 	private Integer sort;
 }

@@ -8,45 +8,45 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-@Data
-@Entity
-@SuperBuilder
-@NoArgsConstructor
+//@Data
+//@Entity
+//@SuperBuilder
+//@NoArgsConstructor
 public class UmsAdmin {
 	//创建时间
-	@Column
+	//@Column
 	private String createTime;
 	
 	//邮箱
-	@Column
+	//@Column
 	private String email;
 	
 	//头像
-	@Column
+	//@Column
 	private String icon;
 	
-	@Id
+	//@Id
 	private Long id;
 	
 	//最后登录时间
-	@Column
+	//@Column
 	private String loginTime;
 	
 	//昵称
-	@Column
+	//@Column
 	private String nickName;
 	
 	//备注信息
-	@Column
+	//@Column
 	private String note;
 	
-	@Column
+	//@Column
 	private String password;
 	
 	//账号启用状态：0->禁用；1->启用
-	@Column
+	//@Column
 	private Integer status;
 	
-	@Column
+	//@Column
 	private String username;
 }

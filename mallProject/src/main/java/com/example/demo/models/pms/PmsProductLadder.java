@@ -7,25 +7,25 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@Entity
+//@Data
+//@NoArgsConstructor
+//@Entity
 public class PmsProductLadder {
 	// 满足的商品数量
-	@Column
+	//@Column
 	private Integer count;
 
 	// 折扣
-	@Column
+	//@Column
 	private Double discount;
 
 	// 折后价格
-	@Id
+	//@Id
 	private Long id;
-	@Column
+	//@Column
 	private Double price;
 
-	@Column
+	//@Column
 	private Long productId;
 
 }

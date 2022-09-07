@@ -7,31 +7,31 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
+//@Entity
+//@Data
+//@NoArgsConstructor
 public class SmsFlashPromotionSession {
 	// 创建时间
-	@Column
+	//@Column
 	private String createTime;
 
 	// 每日结束时间
-	@Column
+	//@Column
 	private String endTime;
 
 	// 编号
-	@Id
+	//@Id
 	private Long id;
 
 	// 场次名称
-	@Column
+	//@Column
 	private String name;
 
 	// 每日开始时间
-	@Column
+	//@Column
 	private String startTime;
 
 	// 启用状态：0->不启用；1->启用
-	@Column
+	//@Column
 	private Integer status;
 }

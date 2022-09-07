@@ -7,75 +7,75 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
+//@Entity
+//@Data
+//@NoArgsConstructor
 public class OmsOrderItem {
 	//优惠券优惠分解金额
-	@Column
+	//@Column
 	private Double couponAmount;
 
 	//积分优惠分解金额
-	@Column
+	//@Column
 	private Integer giftGrowth;
-	@Column
+	//@Column
 	private Integer giftIntegration;
-	@Id
+	//@Id
 	private Long id;
-	@Column
+	//@Column
 	private Double integrationAmount;
 
 	//订单id
-	@Id
+	//@Id
 	private Long orderId;
 
 	//订单编号
-	@Column
+	//@Column
 	private String orderSn;
 
 	//商品销售属性:[{'key':'颜色','value':'颜色'},{'key':'容量','value':'4G'}]
-	@Column
+	//@Column
 	private String productAttr;
 
 	//商品分类id
-	@Column
+	//@Column
 	private String productBrand;
-	@Id
+	//@Id
 	private Long productCategoryId;
 
 	//销售价格
-	@Id
+	//@Id
 	private Long productId;
-	@Column
+	//@Column
 	private String productName;
-	@Column
+	//@Column
 	private String productPic;
-	@Column
+	//@Column
 	private Double productPrice;
 
 	//购买数量
-	@Column
+	//@Column
 	private Integer productQuantity;
 
 	//商品sku条码
-	@Column
+	//@Column
 	private String productSkuCode;
 
 	//商品sku编号
-	@Id
+	//@Id
 	private Long productSkuId;
 
 	//商品促销分解金额
-	@Column
+	//@Column
 	private String productSn;
-	@Column
+	//@Column
 	private Double promotionAmount;
 
 	//商品促销名称
-	@Column
+	//@Column
 	private String promotionName;
 
 	//该商品经过优惠后的分解金额
-	@Column
+	//@Column
 	private Double realAmount;
 }

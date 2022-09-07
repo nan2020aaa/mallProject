@@ -7,23 +7,23 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
+//@Entity
+//@Data
+//@NoArgsConstructor
 public class OmsOrderReturnReason {
 	//添加时间
-	@Column
+	//@Column
 	private String createTime;
 
 	//退货类型
-	@Id
+	//@Id
 	private Long id;
-	@Column
+	//@Column
 	private String name;
 
 	//状态：0->不启用；1->启用
-	@Column
+	//@Column
 	private Integer sort;
-	@Column
+	//@Column
 	private Integer status;
 }

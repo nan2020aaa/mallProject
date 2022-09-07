@@ -7,33 +7,33 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class UmsRole {
 	//后台用户数量
-	@Column
+	//@Column
 	private Integer adminCount;
 	
 	//创建时间
-	@Column
+	//@Column
 	private String createTime;
 	
 	//描述
-	@Column
+	//@Column
 	private String description;
 	
-	@Id
+	//@Id
 	private Long id;
 	
 	//名称
-	@Column
+	//@Column
 	private String name;
 	
-	@Column
+	//@Column
 	private Integer sort;
 	
 	//启用状态：0->禁用；1->启用
-	@Column
+	//@Column
 	private Integer status;
 }

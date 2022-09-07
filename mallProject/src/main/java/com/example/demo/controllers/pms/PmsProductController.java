@@ -1,8 +1,5 @@
 package com.example.demo.controllers.pms;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,12 +15,11 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class PmsProductController {
+	//ProductParamService productParamService;
 	@ResponseBody // 返回值为 ResponseBody 的内容
-	@PostMapping("/create") // 因为在类前注释了“@RequestMapping("/admin")”，只需要写 /admin 之后的路径
+	@PostMapping("/create") 
 	public CommonResult create(@RequestBody PmsProductParam param) { // 传入参数为 RequestBody （在文档中标识为 body）
-		Map<String, String> tokenMap =new HashMap<>();
-		
-		
-		return new CommonResult(200,null,"good");
+		//productParamService.create(PmsProductParam param);
+		return new CommonResult(200,null,"OK");
 	}
 }

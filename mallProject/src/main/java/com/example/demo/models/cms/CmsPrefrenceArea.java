@@ -7,23 +7,23 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@Entity
+//@Data
+//@NoArgsConstructor
+//@Entity
 public class CmsPrefrenceArea {
 	//展示图片
-	@Id
+	//@Id
 	private Long id;
-	@Column
+	//@Column
 	private String name;
-	@Column
+	//@Column
 	private String pic;
 	
-	@Column
+	//@Column
 	private Integer showStatus;
-	@Column
+	//@Column
 	private Integer sort;
-	@Column
+	//@Column
 	private String subTitle;
 
 }

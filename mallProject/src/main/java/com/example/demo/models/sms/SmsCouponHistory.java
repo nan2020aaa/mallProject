@@ -7,41 +7,41 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
+//@Entity
+//@Data
+//@NoArgsConstructor
 public class SmsCouponHistory {
 	// 获取类型：0->后台赠送；1->主动获取
-	@Column
+	//@Column
 	private String couponCode;
-	@Id
+	//@Id
 	private Long couponId;
-	@Column
+	//@Column
 	private String createTime;
-	@Column
+	//@Column
 	private Integer getType;
 
 	// 领取人昵称
-	@Id
+	//@Id
 	private Long id;
-	@Id
+	//@Id
 	private Long memberId;
-	@Column
+	//@Column
 	private String memberNickname;
 
 	// 订单编号
-	@Id
+	//@Id
 	private Long orderId;
 
 	// 订单号码
-	@Column
+	//@Column
 	private String orderSn;
 
 	// 使用状态：0->未使用；1->已使用；2->已过期
-	@Column
+	//@Column
 	private Integer useStatus;
 
 	// 使用时间
-	@Column
+	//@Column
 	private String useTime;
 }

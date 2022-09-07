@@ -5,28 +5,28 @@ import javax.persistence.Entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@Entity
+//@Data
+//@NoArgsConstructor
+//@Entity
 public class OssCallbackResult {
 	//文件名称
-	@Column
+	//@Column
 	private String filename;
 	
 	//图片文件的高
-	@Column
+	//@Column
 	private String height;
 	
 	//文件的mimeType
-	@Column
+	//@Column
 	private String mimeType;
 	
 	//文件大小
-	@Column
+	//@Column
 	private String size;
 	
 	//图片文件的宽
-	@Column
+	//@Column
 	private String width;
 }
 

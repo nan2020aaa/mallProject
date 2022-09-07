@@ -7,35 +7,35 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
+//@Entity
+//@Data
+//@NoArgsConstructor
 public class SmsFlashPromotionProductRelation {
 	// 限时购数量
-	@Column
+	//@Column
 	private Integer flashPromotionCount;
 
 	// 每人限购数量
-	@Id
+	//@Id
 	private Long flashPromotionId;
-	@Column
+	//@Column
 	private Integer flashPromotionLimit;
 
 	// 限时购价格
-	@Column
+	//@Column
 	private Double flashPromotionPrice;
 
 	// 编号
-	@Id
+	//@Id
 	private Long flashPromotionSessionId;
 
 	// 编号
-	@Id
+	//@Id
 	private Long id;
 
 	// 排序
-	@Id
+	//@Id
 	private Long productId;
-	@Column
+	//@Column
 	private Integer sort;
 }

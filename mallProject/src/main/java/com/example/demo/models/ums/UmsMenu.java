@@ -8,43 +8,43 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-@Data
-@Entity
-@SuperBuilder
-@NoArgsConstructor
+//@Data
+//@Entity
+//@SuperBuilder
+//@NoArgsConstructor
 public class UmsMenu {
 	//创建时间
-	@Column
+	//@Column
 	private String createTime;
 	
 	//前端隐藏
-	@Column
+	//@Column
 	private Integer hidden;
 	
 	//前端图标
-	@Column
+	//@Column
 	private String icon;
 	
-	@Id
+	//@Id
 	private Long id;
 	
 	//菜单级数
-	@Column
+	//@Column
 	private Integer level;
 	
 	//前端名称
-	@Column
+	//@Column
 	private String name;
 	
 	//父级ID
-	@Id
+	//@Id
 	private Long parentId;
 	
 	//菜单排序
-	@Column
+	//@Column
 	private Integer sort;
 	
 	//菜单名称
-	@Column
+	//@Column
 	private String title;
 }

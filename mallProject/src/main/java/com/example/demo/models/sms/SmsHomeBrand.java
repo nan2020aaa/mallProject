@@ -7,19 +7,19 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@NoArgsConstructor
+//@Entity
+//@Data
+//@NoArgsConstructor
 public class SmsHomeBrand {
-	@Id
+	//@Id
 	private Long brandId;
-	@Column
+	//@Column
 	private String brandName;
-	@Id
+	//@Id
 	private Long id;
-	@Column
+	//@Column
 	private Integer recommendStatus;
-	@Column
+	//@Column
 	private Integer sort;
 
 }

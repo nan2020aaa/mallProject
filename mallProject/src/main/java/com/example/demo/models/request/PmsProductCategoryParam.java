@@ -7,47 +7,47 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@Entity
+//@Data
+//@NoArgsConstructor
+//@Entity
 public class PmsProductCategoryParam {
 	// 描述
-	@Column
+	//@Column
 	private String description;
 
 	// 图标
-	@Column
+	//@Column
 	private String icon;
 
 	// 关键字
-	@Column
+	//@Column
 	private String keywords;
 
 	// 商品分类名称
-	@Column
+	//@Column
 	private String name;
 
 	// 是否在导航栏显示
-	@Column
+	//@Column
 	private Integer navStatus;
 
 	// 父分类的编号
-	@Id
+	//@Id
 	private Long parentId;
 
 	// 产品相关筛选属性集合
-	@Column
+	//@Column
 	private Long productAttributeIdList;
 
 	// 分类单位
-	@Column
+	//@Column
 	private String productUnit;
 
-	@Column
+	//@Column
 	private Integer showStatus;
 
 	// 排序
-	@Column
+	//@Column
 	private Integer sort;
 
 }

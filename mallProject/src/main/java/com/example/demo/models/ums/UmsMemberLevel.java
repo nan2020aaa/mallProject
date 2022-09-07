@@ -7,55 +7,55 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class UmsMemberLevel {
 	//每次评价获取的成长值
-	@Column
+	//@Column
 	private Integer commentGrowthPoint;
 	
 	//是否为默认等级：0->不是；1->是
-	@Column
+	//@Column
 	private Integer defaultStatus;
 	
 	//免运费标准
-	@Column
+	//@Column
 	private Double freeFreightPoint;
 	
-	@Column
+	//@Column
 	private Integer growthPoint;
 	
-	@Id
+	//@Id
 	private Long id;
 	
-	@Column
+	//@Column
 	private String name;
 	
-	@Column
+	//@Column
 	private String note;
 	
 	//是否有生日特权
-	@Column
+	//@Column
 	private Integer priviledgeBirthday;
 	
 	//是否有评论获奖励特权
-	@Column
+	//@Column
 	private Integer priviledgeComment;
 	
 	//是否有免邮特权
-	@Column
+	//@Column
 	private Integer priviledgeFreeFreight;
 	
 	//是否有会员价格特权
-	@Column
+	//@Column
 	private Integer priviledgeMemberPrice;
 	
 	//是否有专享活动特权
-	@Column
+	//@Column
 	private Integer priviledgePromotion;
 	
 	//是否有签到特权
-	@Column
+	//@Column
 	private Integer priviledgeSignIn;
 }

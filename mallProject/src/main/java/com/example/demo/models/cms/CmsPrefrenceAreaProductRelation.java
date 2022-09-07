@@ -6,15 +6,15 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@Entity
+//@Data
+//@NoArgsConstructor
+//@Entity
 public class CmsPrefrenceAreaProductRelation {
-	@Id
+	//@Id
 	private Long id;
-	@Id
+	//@Id
 	private Long prefrenceAreaId;
-	@Id
+	//@Id
 	private Long productId;
 
 }
