@@ -1,8 +1,11 @@
-package com.example.demo.models.sms;
+package com.example.demo.models.request;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import com.example.demo.models.sms.SmsCouponProductCategoryRelation;
+import com.example.demo.models.sms.SmsCouponProductRelation;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

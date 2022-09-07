@@ -1,4 +1,4 @@
-package com.example.demo.models.oms;
+package com.example.demo.models.request;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
