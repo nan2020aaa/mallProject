@@ -27,11 +27,11 @@ public class PmsSkuStock {
 
 	// 单品促销价格
 	@Column
-	private double price;
+	private Double price;
 	@Id
 	private Long productId;
 	@Column
-	private double promotionPrice;
+	private Double promotionPrice;
 
 	// 销量
 	@Column
