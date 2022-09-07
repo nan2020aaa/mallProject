@@ -17,13 +17,13 @@ public class PmsProductLadder {
 
 	// 折扣
 	@Column
-	private Number discount;
+	private Double discount;
 
 	// 折后价格
 	@Id
 	private Long id;
 	@Column
-	private Number price;
+	private Double price;
 
 	@Column
 	private Long productId;
