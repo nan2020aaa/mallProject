@@ -1,7 +1,5 @@
 package com.example.demo.models.oms;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,7 +17,7 @@ public class OmsOrderReturnApply {
 
 	// 申请时间
 	@Column
-	private Date createTime;
+	private String createTime;
 
 	// 描述
 	@Column
@@ -35,7 +33,7 @@ public class OmsOrderReturnApply {
 
 	// 处理时间
 	@Column
-	private Date handleTime;
+	private String handleTime;
 
 	// 会员用户名
 	@Id
@@ -77,11 +75,11 @@ public class OmsOrderReturnApply {
 
 	// 商品单价
 	@Column
-	private Number productPrice;
+	private Double productPrice;
 
 	// 商品实际支付单价
 	@Column
-	private Number productRealPrice;
+	private Double productRealPrice;
 
 	// 凭证图片，以逗号隔开
 	@Column
@@ -101,11 +99,11 @@ public class OmsOrderReturnApply {
 
 	// 收货时间
 	@Column
-	private Date receiveTime;
+	private String receiveTime;
 
 	// 退款金额
 	@Column
-	private Number returnAmount;
+	private Double returnAmount;
 
 	// 退货人姓名
 	@Column
