@@ -92,7 +92,6 @@ public class PmsProductResult {
 	private Integer previewStatus;
 
 	// 商品分类名称
-
 	@Column
 	private Double price;
 	@Id
@@ -185,7 +184,6 @@ public class PmsProductResult {
 	private Integer verifyStatus;
 
 	// 商品重量，默认为克
-
 	@Column
 	private Double weight;
 }
