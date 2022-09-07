@@ -21,7 +21,7 @@ public class UmsMemberLevel {
 	
 	//免运费标准
 	@Column
-	private double freeFreightPoint;
+	private Double freeFreightPoint;
 	
 	@Column
 	private Integer growthPoint;

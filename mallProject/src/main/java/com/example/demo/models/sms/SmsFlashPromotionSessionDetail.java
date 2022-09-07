@@ -1,7 +1,5 @@
 package com.example.demo.models.sms;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,11 +13,11 @@ import lombok.NoArgsConstructor;
 public class SmsFlashPromotionSessionDetail {
 	// 创建时间
 	@Column
-	private Date createTime;
+	private String createTime;
 
 	// 每日结束时间
 	@Column
-	private Date endTime;
+	private String endTime;
 
 	// 编号
 	@Id
@@ -35,7 +33,7 @@ public class SmsFlashPromotionSessionDetail {
 
 	// 每日开始时间
 	@Column
-	private Date startTime;
+	private String startTime;
 
 	// 启用状态：0->不启用；1->启用
 	@Column

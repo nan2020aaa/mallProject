@@ -1,7 +1,5 @@
 package com.example.demo.models.sms;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,7 +17,7 @@ public class SmsHomeAdvertise {
 
 	// 备注
 	@Column
-	private Date endTime;
+	private String endTime;
 	@Id
 	private Long id;
 	@Column
@@ -39,7 +37,7 @@ public class SmsHomeAdvertise {
 
 	// 上下线状态：0->下线；1->上线
 	@Column
-	private Date startTime;
+	private String startTime;
 	@Column
 	private Integer status;
 

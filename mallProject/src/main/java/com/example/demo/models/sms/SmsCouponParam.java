@@ -1,12 +1,8 @@
 package com.example.demo.models.sms;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import com.example.demo.models.oms.OmsOrder;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class SmsCouponParam {
 	// 金额
 	@Column
-	private Number amount;
+	private Double amount;
 
 	// 优惠码
 	@Column
@@ -29,11 +25,11 @@ public class SmsCouponParam {
 
 	// 可以领取的日期
 	@Column
-	private Date enableTime;
+	private String enableTime;
 
 	// 可领取的会员类型：0->无限时
 	@Column
-	private Date endTime;
+	private String endTime;
 	@Id
 	private Long id;
 	@Column
@@ -41,7 +37,7 @@ public class SmsCouponParam {
 
 	// 使用门槛；0表示无门槛
 	@Column
-	private Number minPoint;
+	private Double minPoint;
 
 	// 备注
 	@Column
@@ -75,7 +71,7 @@ public class SmsCouponParam {
 
 	// 优惠券类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券
 	@Column
-	private Date startTime;
+	private String startTime;
 	@Column
 	private Integer type;
 
