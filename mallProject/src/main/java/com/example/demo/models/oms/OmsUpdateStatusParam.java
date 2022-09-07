@@ -39,7 +39,7 @@ public class OmsUpdateStatusParam {
 
 	// 确认退款金额
 	@Column
-	private Number returnAmount;
+	private Double returnAmount;
 
 	// 申请状态：1->退货中；2->已完成；3->已拒绝
 	@Column

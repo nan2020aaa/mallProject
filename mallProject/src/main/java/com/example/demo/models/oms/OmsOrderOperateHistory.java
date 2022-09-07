@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class OmsOrderOperateHistory {
 	// 操作时间
 	@Column
-	private Date createTime;
+	private String createTime;
 
 	// 备注
 	@Id

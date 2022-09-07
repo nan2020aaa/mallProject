@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class OmsOrderReturnReason {
 	//添加时间
 	@Column
-	private Date createTime;
+	private String createTime;
 
 	//退货类型
 	@Id

@@ -40,7 +40,7 @@ public class OmsOrder {
 
 	// 评价时间
 	@Column
-	private Date commentTime;
+	private String commentTime;
 
 	// 确认收货状态：0->未确认；1->已确认
 	@Column
@@ -48,13 +48,13 @@ public class OmsOrder {
 
 	// 优惠券抵扣金额
 	@Column
-	private Number couponAmount;
+	private Double couponAmount;
 
 	// 提交时间
 	@Id
 	private Long couponId;
 	@Column
-	private Date createTime;
+	private String createTime;
 
 	// 删除状态：0->未删除；1->已删除
 	@Column
@@ -70,15 +70,15 @@ public class OmsOrder {
 
 	// 发货时间
 	@Column
-	private Date deliveryTime;
+	private String deliveryTime;
 
 	// 管理员后台调整订单使用的折扣金额
 	@Column
-	private Number discountAmount;
+	private Double discountAmount;
 
 	// 运费金额
 	@Column
-	private Number freightAmount;
+	private Double freightAmount;
 
 	// 可以活动的成长值
 	@Column
@@ -94,7 +94,7 @@ public class OmsOrder {
 
 	// 积分抵扣金额
 	@Column
-	private Number integrationAmount;
+	private Double integrationAmount;
 
 	// 用户帐号
 	@Id
@@ -104,7 +104,7 @@ public class OmsOrder {
 
 	// 修改时间
 	@Column
-	private Date modifyTime;
+	private String modifyTime;
 
 	// 订单备注
 	@Column
@@ -120,7 +120,7 @@ public class OmsOrder {
 
 	// 应付金额（实际支付金额）
 	@Column
-	private Number payAmount;
+	private Double payAmount;
 
 	// 支付方式：0->未支付；1->支付宝；2->微信
 	@Column
@@ -128,11 +128,11 @@ public class OmsOrder {
 
 	// 支付时间
 	@Column
-	private Date paymentTime;
+	private String paymentTime;
 
 	// 促销优化金额（促销价、满减、阶梯价）
 	@Column
-	private Number promotionAmount;
+	private Double promotionAmount;
 
 	// 活动信息
 	@Column
@@ -140,7 +140,7 @@ public class OmsOrder {
 
 	// 确认收货时间
 	@Column
-	private Date receiveTime;
+	private String receiveTime;
 
 	// 城市
 	@Column
@@ -180,7 +180,7 @@ public class OmsOrder {
 
 	// 订单总金额
 	@Column
-	private Number totalAmount;
+	private Double totalAmount;
 
 	// 下单时使用的积分
 	@Column
