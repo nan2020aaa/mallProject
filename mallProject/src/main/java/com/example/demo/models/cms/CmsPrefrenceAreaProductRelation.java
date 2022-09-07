@@ -1,6 +1,5 @@
 package com.example.demo.models.cms;
 
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -17,6 +16,5 @@ public class CmsPrefrenceAreaProductRelation {
 	private Long prefrenceAreaId;
 	@Id
 	private Long productId;
-	
-   
+
 }

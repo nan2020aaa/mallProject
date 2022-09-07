@@ -21,9 +21,9 @@ public class PmsProductParam {
 	// 画册图片，连产品图片限制为5张，以逗号分割
 	private String albumPics;
 
-	private Long brandId;
-
+	
 	// 品牌名称
+	private Long brandId;
 	private String brandName;
 
 	// 删除状态：0->未删除；1->已删除
@@ -32,29 +32,24 @@ public class PmsProductParam {
 	// 产品描述
 	private String description;
 
-	private String detailDesc;
-
 	// 产品详情网页内容
+	private String detailDesc;
 	private String detailHtml;
 
 	// 移动端网页详情
 	private String detailMobileHtml;
 
-	private String detailTitle;
-
-	private Long feightTemplateId;
-
 	// 赠送的成长值
+	private String detailTitle;
+	private Long feightTemplateId;
 	private Integer giftGrowth;
 
 	// 赠送的积分
 	private Integer giftPoint;
 
-	private Long id;
-
-	private String keywords;
-
 	// 库存预警值
+	private Long id;
+	private String keywords;
 	private Integer lowStock;
 
 	// 商品会员价格设置
@@ -63,31 +58,27 @@ public class PmsProductParam {
 	private String name;
 
 	// 新品状态：0->不是新品；1->新品
+	private String mame;
 	private Integer newStatus;
 
+	//市场价
+	private Double originalPrice;
 	private String note;
-
-	// 市场价
-	private double originalPrice;
-
-	private String pic;
 
 	// 优选专区和商品的关系
 	private List<CmsPrefrenceAreaProductRelation> prefrenceAreaProductRelationList;
 
 	// 是否为预告商品：0->不是；1->是
 	private Integer previewStatus;
-
-	private double price;
-
+	
+	// 商品参数及自定义规格属性
+	private Double price;
 	private Long productAttributeCategoryId;
 
-	// 商品参数及自定义规格属性
 	private List<PmsProductAttributeValue> productAttrubuteValueList;
 
-	private Long productCategoryId;
-
 	// 商品分类名称
+	private Long productCategoryId;
 	private String productCategoryName;
 
 	// 商品满减价格设置
@@ -105,10 +96,11 @@ public class PmsProductParam {
 	// 活动限购数量
 	private Integer promotionPerLimit;
 
-	// 促销价格
-	private double promotionPrice;
 
-	// 促销开始时间
+	//促销价格
+	private Double promotionPrice;
+	
+	//促销开始时间
 	private String promotionStartTime;
 
 	// 促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购
@@ -149,7 +141,8 @@ public class PmsProductParam {
 
 	// 审核状态：0->未审核；1->审核通过
 	private Integer veryfyStatus;
+	
+	//商品重量，默认为克
+	private Double weight;
 
-	// 商品重量，默认为克
-	private double weight;
 }

@@ -79,10 +79,11 @@ public class PmsProductResult {
 	// 市场价
 	@Column
 	private String note;
+
 	@Column
 	private Double originalPrice;
 
-	// 是否为预告商品：0->不是；1->是
+// 是否为预告商品：0->不是；1->是
 	@Column
 	private String pic;
 	@Column
@@ -91,6 +92,7 @@ public class PmsProductResult {
 	private Integer previewStatus;
 
 	// 商品分类名称
+
 	@Column
 	private Double price;
 	@Id
@@ -183,6 +185,7 @@ public class PmsProductResult {
 	private Integer verifyStatus;
 
 	// 商品重量，默认为克
+
 	@Column
 	private Double weight;
 }

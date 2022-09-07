@@ -1,12 +1,8 @@
 package com.example.demo.models.sms;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import com.example.demo.models.oms.OmsOrder;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +17,7 @@ public class SmsCouponHistory {
 	@Id
 	private Long couponId;
 	@Column
-	private Date createTime;
+	private String createTime;
 	@Column
 	private Integer getType;
 
@@ -47,5 +43,5 @@ public class SmsCouponHistory {
 
 	// 使用时间
 	@Column
-	private Date useTime;
+	private String useTime;
 }

@@ -20,7 +20,6 @@ public class PmsMemberPrice {
 	private String memberLevelName;
 	@Column
 	private Double memberPrice;
-
 	@Id
 	private Long productId;
 

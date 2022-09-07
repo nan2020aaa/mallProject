@@ -1,14 +1,8 @@
 package com.example.demo.models.sms;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import com.example.demo.models.oms.OmsOrderDetail;
-import com.example.demo.models.oms.OmsOrderItem;
-import com.example.demo.models.oms.OmsOrderOperateHistory;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +23,7 @@ public class SmsFlashPromotionProductRelation {
 
 	// 限时购价格
 	@Column
-	private Number flashPromotionPrice;
+	private Double flashPromotionPrice;
 
 	// 编号
 	@Id
