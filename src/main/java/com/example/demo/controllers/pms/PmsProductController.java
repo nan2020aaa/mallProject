@@ -19,7 +19,7 @@ public class PmsProductController {
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@PostMapping("/create") 
 	public CommonResult create(@RequestBody PmsProductParam param) { // 传入参数为 RequestBody （在文档中标识为 body）
-		//productParamService.create(PmsProductParam param);
+		//productParamService.create(param);
 		return new CommonResult(200,null,"OK");
 	}
 }
