@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class PmsMemberPrice {
 	// 会员价格
 	@Id

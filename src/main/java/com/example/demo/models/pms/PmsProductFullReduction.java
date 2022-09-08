@@ -9,16 +9,17 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class PmsProductFullReduction {
 	@Column
 	private Double fullPrice;
 	
-	//@Id
+	@Id
 	private Long id;
 	
-	//@Id
+	@Column
 	private Integer productId;
 	
-	//@Column
+	@Column
 	private Double reducePrice;
 }

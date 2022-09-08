@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class CmsPrefrenceAreaProductRelation {
 	@Id
 	private Long id;

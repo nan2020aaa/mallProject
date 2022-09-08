@@ -7,9 +7,9 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Entity
-//@Data
-//@NoArgsConstructor
+@Entity
+@Data
+@NoArgsConstructor
 public class PmsSkuStock {
 	// 锁定库存
 	//@Id
