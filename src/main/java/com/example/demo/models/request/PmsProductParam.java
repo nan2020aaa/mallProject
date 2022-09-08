@@ -140,7 +140,7 @@ public class PmsProductParam {
 	private Integer usePointLimit;
 
 	// 审核状态：0->未审核；1->审核通过
-	private Integer veryfyStatus;
+	private Integer verifyStatus;
 	
 	//商品重量，默认为克
 	private Double weight;
