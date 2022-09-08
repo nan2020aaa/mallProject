@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.example.demo.models.cms.CmsPrefrenceAreaProductRelation;
 import com.example.demo.models.cms.CmsSubjectProductRelation;
@@ -74,7 +76,7 @@ public class PmsProductParam {
 	private Integer lowStock;
 
 	// 商品会员价格设置
-	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
 	private List<PmsMemberPrice> memberPriceList;
 
 	@Column
@@ -95,7 +97,7 @@ public class PmsProductParam {
 	private String note;
 
 	// 优选专区和商品的关系
-	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
 	private List<CmsPrefrenceAreaProductRelation> prefrenceAreaProductRelationList;
 
 	// 是否为预告商品：0->不是；1->是
@@ -109,7 +111,7 @@ public class PmsProductParam {
 	@Column
 	private Long productAttributeCategoryId;
 
-	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
 	private List<PmsProductAttributeValue> productAttrubuteValueList;
 
 	// 商品分类名称
@@ -120,11 +122,11 @@ public class PmsProductParam {
 	private String productCategoryName;
 
 	// 商品满减价格设置
-	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
 	private List<PmsProductFullReduction> productFullReductionList;
 
 	// 商品阶梯价格设置
-	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
 	private List<PmsProductLadder> productLadderList;
 
 	// 货号
@@ -168,7 +170,7 @@ public class PmsProductParam {
 	private String serviceIds;
 
 	// 商品的sku库存信息
-	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
 	private List<PmsSkuStock> skuStockList;
 
 	// 排序
@@ -184,7 +186,7 @@ public class PmsProductParam {
 	private String subTitle;
 
 	// 专题和商品关系
-	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
 	private List<CmsSubjectProductRelation> subjectProductRelationList;
 
 	// 单位
