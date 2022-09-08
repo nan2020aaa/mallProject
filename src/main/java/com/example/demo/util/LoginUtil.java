@@ -17,6 +17,7 @@ import lombok.experimental.SuperBuilder;
 
 @Component
 public class LoginUtil {
+
 	@Autowired
 	private UmsMenuRepository wiredUmsMenuRepository;
 
