@@ -15,6 +15,7 @@ import com.example.demo.models.pms.PmsProduct;
 import com.example.demo.models.request.PmsProductParam;
 import com.example.demo.models.response.CommonPage;
 import com.example.demo.models.response.CommonResult;
+import com.example.demo.services.pms.PmsProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,13 +23,12 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class PmsProductController {
-	//PmsProductParamService productParamService;
-	//PmsProductService productService;
+	PmsProductService productService;
 	
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@PostMapping("/create") 
 	public CommonResult create(@RequestBody PmsProductParam param) { // 传入参数为 RequestBody （在文档中标识为 body）
-		//productParamService.create(param);
+		productService.create(param);
 		return new CommonResult(200,null,"OK");
 	}
 	

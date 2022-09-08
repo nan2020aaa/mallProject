@@ -8,7 +8,6 @@ import com.example.demo.repositories.pms.PmsProductRepository;
 
 @Service
 public class PmsProductService {
-
 	@Autowired
 	PmsProductRepository repository;
 
