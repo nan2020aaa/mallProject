@@ -1,5 +1,5 @@
 package com.example.demo.repositories.pms;
 
-public class PmsBrandRepository {
+public interface PmsBrandRepository {
 
 }
