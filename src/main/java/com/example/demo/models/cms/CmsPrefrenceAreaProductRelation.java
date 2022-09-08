@@ -1,20 +1,22 @@
 package com.example.demo.models.cms;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Data
-//@NoArgsConstructor
-//@Entity
+@Data
+@Entity
 public class CmsPrefrenceAreaProductRelation {
-	//@Id
+	@Id
 	private Long id;
-	//@Id
+	
+	@Column
 	private Long prefrenceAreaId;
-	//@Id
+	
+	@Column
 	private Long productId;
 
 }
