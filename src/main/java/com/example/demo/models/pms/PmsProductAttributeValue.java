@@ -7,18 +7,21 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Data
-//@NoArgsConstructor
-//@Entity
+@Data
+@Entity
+@NoArgsConstructor
 public class PmsProductAttributeValue {
 	// 手动添加规格或参数的值，参数单值，规格有多个时以逗号隔开
-	//@Id
+	@Id
 	private Long id;
-	//@Id
+	
+	@Column
 	private Long productAttributeId;
-	//@Id
+	
+	@Column
 	private Long productId;
-	//@Column
+	
+	@Column
 	private String value;
 
 }

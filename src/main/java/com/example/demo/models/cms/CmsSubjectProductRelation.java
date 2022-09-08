@@ -1,19 +1,20 @@
 package com.example.demo.models.cms;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Data
-//@NoArgsConstructor
-//@Entity
+@Data
+@NoArgsConstructor
+@Entity
 public class CmsSubjectProductRelation {
-	//@Id
+	@Id
 	private Long id;
-	//@Id
+	@Column
 	private Long productId;
-	//@Id
+	@Column
 	private Long subjectId;
 }

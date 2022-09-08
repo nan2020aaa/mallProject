@@ -7,21 +7,23 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Data
-//@NoArgsConstructor
-//@Entity
+@Data
+@Entity
+@NoArgsConstructor
 public class PmsMemberPrice {
 	// 会员价格
-	//@Id
+	@Id
 	private Long id;
-	//@Id
+	
+	@Column
 	private Long memberLevelId;
-	//@Column
+	
+	@Column
 	private String memberLevelName;
-	//@Column
+	
+	@Column
 	private Double memberPrice;
 
-	//@Id
+	@Column
 	private Long productId;
-
 }

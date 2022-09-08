@@ -7,45 +7,45 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Entity
-//@Data
-//@NoArgsConstructor
+@Entity
+@Data
+@NoArgsConstructor
 public class PmsSkuStock {
 	// 锁定库存
-	//@Id
+	@Id
 	private Long id;
-	//@Column
+	@Column
 	private Integer lockStock;
 
 	// 预警库存
-	//@Column
+	@Column
 	private Integer lowStock;
 
 	// 展示图片
-	//@Column
+	@Column
 	private String pic;
 
 	// 单品促销价格
-	//@Column
+	@Column
 	private Double price;
-	//@Id
+	@Column
 	private Long productId;
-	//@Column
+	@Column
 	private Double promotionPrice;
 
 	// 销量
-	//@Column
+	@Column
 	private Integer sale;
 
 	// sku编码
-	//@Column
+	@Column
 	private String skuCode;
 
 	// 商品销售属性，json格式
-	//@Column
+	@Column
 	private String spData;
 
 	// 库存
-	//@Column
+	@Column
 	private Integer stock;
 }
