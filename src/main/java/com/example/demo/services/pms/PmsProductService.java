@@ -14,7 +14,7 @@ public class PmsProductService {
 	
 	public boolean create(PmsProductParam param) {
 		
-		repository.save(new PmsProductParam());
+		repository.save(param);
 		return true;
 	}
 	
