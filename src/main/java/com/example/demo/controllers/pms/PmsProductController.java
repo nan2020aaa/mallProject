@@ -32,7 +32,7 @@ public class PmsProductController {
 	public CommonResult create(@RequestBody PmsProductParam param) { // 传入参数为 RequestBody （在文档中标识为 body）
 		Logger logger = LoggerFactory.getLogger(PmsProductController.class);
 		logger.info("参数添加成功"+param.toString());
-		productService.create(param);
+//		productService.create(param);
 		return new CommonResult(200,null,"OK");
 	}
 	
