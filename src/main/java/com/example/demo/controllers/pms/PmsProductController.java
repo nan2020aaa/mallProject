@@ -5,6 +5,10 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,29 +29,37 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class PmsProductController {
+	@Autowired
 	PmsProductService productService;
-	
+
 	@ResponseBody // 返回值为 ResponseBody 的内容
-	@PostMapping("/create") 
+	@PostMapping("/create")
 	public CommonResult create(@RequestBody PmsProductParam param) { // 传入参数为 RequestBody （在文档中标识为 body）
-		Logger logger = LoggerFactory.getLogger(PmsProductController.class);
-		logger.info("参数添加成功"+param.toString());
-		productService.create(param);
-		return new CommonResult(200,null,"OK");
+//		productService.create(param);
+
+		log.info("参数添加成功：" + param.toString());
+		log.info("程序载入成功");
+		PmsProduct data = new PmsProduct();
+		BeanUtils.copyProperties(param, data);
+		log.info("数据载入成功");
+		productService.create(data);
+		return new CommonResult(200, null, "OK");
 	}
-	
+
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list")
-	public CommonResult list(@RequestParam Long brandId, @RequestParam String keyword, @RequestParam Integer pageNum, @RequestParam Integer pageSize, @RequestParam Long productCategoryId, @RequestParam String productSn, @RequestParam Integer publishStatus, @RequestParam Integer verifyStatus) {
-		PmsProduct pmsProduct = new PmsProduct();//为了让程序不报错临时写的代码，功能实现后应删去。
+	public CommonResult list(@RequestParam Long brandId, @RequestParam String keyword, @RequestParam Integer pageNum,
+			@RequestParam Integer pageSize, @RequestParam Long productCategoryId, @RequestParam String productSn,
+			@RequestParam Integer publishStatus, @RequestParam Integer verifyStatus) {
+		PmsProduct pmsProduct = new PmsProduct();// 为了让程序不报错临时写的代码，功能实现后应删去。
 		List<Object> pmsProductList = new ArrayList<>();
-		pmsProductList.add(pmsProduct);//为了让程序不报错临时写的代码，功能实现后应删去。
-		//pmsProductList.add(productService.getBybrandId());
-		//pmsProductList.add(productService.getBybrandKeyword());
-		//pmsProductList.add(productService.getBybrandProductCategoryId());
-		//pmsProductList.add(productService.getBybrandProductSn());
-		//pmsProductList.add(productService.getBybrandPublishStatus());
-		//pmsProductList.add(productService.getBybrandVerifyStatus());
-		return new CommonResult(200,new CommonPage(pmsProductList, pageNum, pageSize, 1l, 1),"OK");
+		pmsProductList.add(pmsProduct);// 为了让程序不报错临时写的代码，功能实现后应删去。
+		// pmsProductList.add(productService.getBybrandId());
+		// pmsProductList.add(productService.getBybrandKeyword());
+		// pmsProductList.add(productService.getBybrandProductCategoryId());
+		// pmsProductList.add(productService.getBybrandProductSn());
+		// pmsProductList.add(productService.getBybrandPublishStatus());
+		// pmsProductList.add(productService.getBybrandVerifyStatus());
+		return new CommonResult(200, new CommonPage(pmsProductList, pageNum, pageSize, 1l, 1), "OK");
 	}
 }
