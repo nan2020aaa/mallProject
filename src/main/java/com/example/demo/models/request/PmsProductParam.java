@@ -1,21 +1,5 @@
 package com.example.demo.models.request;
 
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import com.example.demo.models.cms.CmsPrefrenceAreaProductRelation;
-import com.example.demo.models.cms.CmsSubjectProductRelation;
-import com.example.demo.models.pms.PmsMemberPrice;
-import com.example.demo.models.pms.PmsProductAttributeValue;
-import com.example.demo.models.pms.PmsProductFullReduction;
-import com.example.demo.models.pms.PmsProductLadder;
-import com.example.demo.models.pms.PmsSkuStock;
-
 import lombok.Data;
 
 @Data

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.models.pms.PmsProduct;
 
 @Repository
-public interface PmsProductRepository extends JpaRepository<PmsProduct,Long>{
-	
+public interface PmsProductRepository extends JpaRepository<PmsProduct, Long> {
 
 }
