@@ -11,12 +11,15 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class PmsProductService {
+
 	@Autowired
-	PmsProductRepository repository;
+	private PmsProductRepository repository;
 
 	public boolean create(PmsProduct data) {
+
 		repository.save(data);
-		log.info("数据录入成功");
+
+		log.info("PmsProductService, create(), DBに保存完成：{}", data);
 		return true;
 	}
 
