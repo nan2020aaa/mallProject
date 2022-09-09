@@ -3,6 +3,8 @@ package com.example.demo.controllers.pms;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,12 +25,17 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class PmsProductController {
+	@Autowired
 	PmsProductService productService;
 	
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@PostMapping("/create") 
 	public CommonResult create(@RequestBody PmsProductParam param) { // 传入参数为 RequestBody （在文档中标识为 body）
-		productService.create(param);
+		log.info("程序载入成功");
+		PmsProduct data = new PmsProduct();
+		BeanUtils.copyProperties(param, data);
+		log.info("数据载入成功");
+		productService.create(data);
 		return new CommonResult(200,null,"OK");
 	}
 	
