@@ -3,6 +3,8 @@ package com.example.demo.controllers.pms;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +30,8 @@ public class PmsProductController {
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@PostMapping("/create") 
 	public CommonResult create(@RequestBody PmsProductParam param) { // 传入参数为 RequestBody （在文档中标识为 body）
+		Logger logger = LoggerFactory.getLogger(PmsProductController.class);
+		logger.info("参数添加成功"+param.toString());
 		productService.create(param);
 		return new CommonResult(200,null,"OK");
 	}
