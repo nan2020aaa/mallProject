@@ -36,7 +36,7 @@ public class PmsProductController {
 		BeanUtils.copyProperties(param, data);
 		log.info("数据载入成功");
 		productService.create(data);
-		return new CommonResult(200,null,"OK");
+		return new CommonResult(200,null,"ok");
 	}
 	
 	@ResponseBody // 返回值为 ResponseBody 的内容
