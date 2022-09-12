@@ -2,12 +2,6 @@ package com.example.demo.models.request;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 import com.example.demo.models.cms.CmsPrefrenceAreaProductRelation;
 import com.example.demo.models.cms.CmsSubjectProductRelation;
 import com.example.demo.models.pms.PmsMemberPrice;
@@ -61,7 +55,7 @@ public class PmsProductParam {
 
 	// 商品会员价格设置
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
-//	private List<PmsMemberPrice> memberPriceList;
+	private List<PmsMemberPrice> memberPriceList;
 
 	// 新品状态：0->不是新品；1->新品
 	private String name;
@@ -75,7 +69,7 @@ public class PmsProductParam {
 
 	// 优选专区和商品的关系
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
-//	private List<CmsPrefrenceAreaProductRelation> prefrenceAreaProductRelationList;
+	private List<CmsPrefrenceAreaProductRelation> prefrenceAreaProductRelationList;
 
 	// 是否为预告商品：0->不是；1->是
 	private Integer previewStatus;
@@ -86,7 +80,7 @@ public class PmsProductParam {
 	private Long productAttributeCategoryId;
 
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
-//	private List<PmsProductAttributeValue> productAttrubuteValueList;
+	private List<PmsProductAttributeValue> productAttrubuteValueList;
 
 	// 商品分类名称
 	private Long productCategoryId;
@@ -95,11 +89,11 @@ public class PmsProductParam {
 
 	// 商品满减价格设置
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
-//	private List<PmsProductFullReduction> productFullReductionList;
+	private List<PmsProductFullReduction> productFullReductionList;
 
 	// 商品阶梯价格设置
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
-//	private List<PmsProductLadder> productLadderList;
+	private List<PmsProductLadder> productLadderList;
 
 	// 货号
 	private String productSn;
@@ -133,7 +127,7 @@ public class PmsProductParam {
 
 	// 商品的sku库存信息
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
-//	private List<PmsSkuStock> skuStockList;
+	private List<PmsSkuStock> skuStockList;
 
 	// 排序
 	private Integer sort;
@@ -146,7 +140,7 @@ public class PmsProductParam {
 
 	// 专题和商品关系
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
-//	private List<CmsSubjectProductRelation> subjectProductRelationList;
+	private List<CmsSubjectProductRelation> subjectProductRelationList;
 
 	// 单位
 	private String unit;

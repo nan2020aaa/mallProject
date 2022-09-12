@@ -11,14 +11,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CommonPage {
-	private List<Object> list;
-	
+public class CommonPage<T> {
+
+	private List<T> list;
+
 	private Integer pageNum;
-	
+
 	private Integer pageSize;
-	
+
 	private Long total;
-	
+
 	private Integer totalPage;
 }

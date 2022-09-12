@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class PmsProductAttributeValue {
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "productParam_id")
-//	private PmsProductParam productParam;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "productParam_id")
+	private PmsProductParam productParam;
 	
 	// 手动添加规格或参数的值，参数单值，规格有多个时以逗号隔开
 	@Id
