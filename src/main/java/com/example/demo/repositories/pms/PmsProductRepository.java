@@ -1,5 +1,9 @@
 package com.example.demo.repositories.pms;
 
+
+//import java.awt.print.Pageable;
+
+//import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,3 +23,6 @@ public interface PmsProductRepository extends JpaRepository<PmsProduct, Long> {
 
 	PmsProduct getByVerifyStatus(Integer verifyStatus);
 }
+
+
+
