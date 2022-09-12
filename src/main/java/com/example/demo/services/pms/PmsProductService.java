@@ -11,13 +11,40 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class PmsProductService {
+
 	@Autowired
-	PmsProductRepository repository;
+	private PmsProductRepository repository;
 
 	public boolean create(PmsProduct data) {
+
 		repository.save(data);
-		log.info("数据录入成功");
+
+		log.info("PmsProductService, create(), DBに保存完成：{}", data);
 		return true;
+	}
+	
+	public PmsProduct getByBrandId(Long id) {
+		return repository.getByBrandId(id);
+	}
+	
+	public PmsProduct getByKeywords(String keyword) {
+		return repository.getByKeywords(keyword);
+	}
+	
+	public PmsProduct getByProductCategoryId(Long productCategoryId) {
+		return repository.getByProductCategoryId(productCategoryId);
+	}
+	
+	public PmsProduct getByProductSn(String productSn) {
+		return repository.getByProductSn(productSn);
+	}
+	
+	public PmsProduct getByPublishStatus(Integer publishStatus) {
+		return repository.getByPublishStatus(publishStatus);
+	}
+	
+	public PmsProduct getByVerifyStatus(Integer verifyStatus) {
+		return repository.getByVerifyStatus(verifyStatus);
 	}
 
 }

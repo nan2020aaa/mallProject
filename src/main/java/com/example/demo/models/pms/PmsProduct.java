@@ -3,7 +3,6 @@ package com.example.demo.models.pms;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +18,7 @@ public class PmsProduct {
 	// 品牌名称
 	@Column
 	private Long brandId;
-	
+
 	@Column
 	private String brandName;
 
@@ -34,7 +33,7 @@ public class PmsProduct {
 	// 产品详情网页内容
 	@Column
 	private String detailDesc;
-	
+
 	@Column
 	private String detailHtml;
 
@@ -45,10 +44,10 @@ public class PmsProduct {
 	// 赠送的成长值
 	@Column
 	private String detailTitle;
-	
+
 	@Column
 	private Long feightTemplateId;
-	
+
 	@Column
 	private Integer giftGrowth;
 
@@ -59,43 +58,43 @@ public class PmsProduct {
 	// 库存预警值
 	@Id
 	private Long id;
-	
+
 	@Column
 	private String keywords;
-	
+
 	@Column
 	private Integer lowStock;
 
 	// 新品状态:0->不是新品；1->新品
 	@Column
 	private String name;
-	
+
 	@Column
 	private Integer newStatus;
 
 	// 市场价
 	@Column
 	private String note;
-	
+
 	@Column
 	private Double originalPrice;
 
 	// 是否为预告商品：0->不是；1->是
 	@Column
 	private String pic;
-	
+
 	@Column
 	private Integer previewStatus;
 
 	// 商品分类名称
 	@Column
 	private Double price;
-	
+
 	@Column
 	private Long productAttributeCategoryId;
-	
+
 	private Long productCategoryId;
-	
+
 	@Column
 	private String productCategoryName;
 
