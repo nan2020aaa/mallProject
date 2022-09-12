@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class PmsProductLadder {
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "productParam_id")
-	private PmsProductParam productParam;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "productParam_id")
+//	private PmsProductParam productParam;
 	
 	// 满足的商品数量
 	@Column
