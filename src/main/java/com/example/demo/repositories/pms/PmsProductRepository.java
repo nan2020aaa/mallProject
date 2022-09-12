@@ -7,6 +7,15 @@ import com.example.demo.models.pms.PmsProduct;
 
 @Repository
 public interface PmsProductRepository extends JpaRepository<PmsProduct,Long>{
+	PmsProduct getByBrandId(Long brandId);
 	
+	PmsProduct getByKeywords(String keyword);
 
+	PmsProduct getByProductCategoryId(Long productCategoryId);
+	
+	PmsProduct getByProductSn(String productSn);
+	
+	PmsProduct getByPublishStatus(Integer publishStatus);
+	
+	PmsProduct getByVerifyStatus(Integer verifyStatus);
 }

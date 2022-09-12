@@ -42,15 +42,13 @@ public class PmsProductController {
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list")
 	public CommonResult list(@RequestParam Long brandId, @RequestParam String keyword, @RequestParam Integer pageNum, @RequestParam Integer pageSize, @RequestParam Long productCategoryId, @RequestParam String productSn, @RequestParam Integer publishStatus, @RequestParam Integer verifyStatus) {
-		PmsProduct pmsProduct = new PmsProduct();//为了让程序不报错临时写的代码，功能实现后应删去。
 		List<Object> pmsProductList = new ArrayList<>();
-		pmsProductList.add(pmsProduct);//为了让程序不报错临时写的代码，功能实现后应删去。
-		//pmsProductList.add(productService.getBybrandId());
-		//pmsProductList.add(productService.getBybrandKeyword());
-		//pmsProductList.add(productService.getBybrandProductCategoryId());
-		//pmsProductList.add(productService.getBybrandProductSn());
-		//pmsProductList.add(productService.getBybrandPublishStatus());
-		//pmsProductList.add(productService.getBybrandVerifyStatus());
+		pmsProductList.add(productService.getByBrandId(brandId));
+		pmsProductList.add(productService.getByKeywords(keyword));
+		pmsProductList.add(productService.getByProductCategoryId(productCategoryId));
+		pmsProductList.add(productService.getByProductSn(productSn));
+		pmsProductList.add(productService.getByPublishStatus(publishStatus));
+		pmsProductList.add(productService.getByVerifyStatus(verifyStatus));
 		return new CommonResult(200,new CommonPage(pmsProductList, pageNum, pageSize, 1l, 1),"OK");
 	}
 }
