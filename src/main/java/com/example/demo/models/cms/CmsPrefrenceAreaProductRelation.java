@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class CmsPrefrenceAreaProductRelation {
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "productParam_id")
-//	private PmsProductParam productParam;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "productParam_id")
+	private PmsProductParam productParam;
 	
 	@Id
 	private Long id;

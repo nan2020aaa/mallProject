@@ -23,8 +23,12 @@ public interface PmsProductRepository extends JpaRepository<PmsProduct, Long> {
 
 	PmsProduct getByVerifyStatus(Integer verifyStatus);
 
+
 //static Page<PmsProduct> findAll(Pageable paging) {
 //
 //		return null;
 //	}
 }
+
+
+

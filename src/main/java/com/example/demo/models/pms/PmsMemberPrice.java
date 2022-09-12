@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class PmsMemberPrice {
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "productParam_id")
-//	private PmsProductParam productParam;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "productParam_id")
+	private PmsProductParam productParam;
 	
 	// 会员价格
 	@Id
