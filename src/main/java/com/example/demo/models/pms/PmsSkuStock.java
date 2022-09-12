@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class PmsSkuStock {
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "productParam_id")
-//	private PmsProductParam productParam;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "productParam_id")
+	private PmsProductParam productParam;
 	
 	// 锁定库存
 	@Id
