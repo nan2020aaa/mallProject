@@ -66,7 +66,7 @@ public class PmsProductController {
 //		pmsProductList.add(productService.getByPublishStatus(publishStatus));
 //		pmsProductList.add(productService.getByVerifyStatus(verifyStatus));
 
-		Pageable paging = PageRequest.of(pageNum, pageSize);
+		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
 		Page<PmsProduct> pmsProductList = productService.findAll(paging);
