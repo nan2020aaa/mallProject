@@ -51,11 +51,7 @@ public class PmsProductService {
 
 	public PmsProduct getByVerifyStatus(Integer verifyStatus) {
 		return repository.getByVerifyStatus(verifyStatus);
-		
-//	Pageable paging=PageRequest.of(1, 5);
-//	Page<PmsProduct>productList=PmsProductRepository.findAll(paging);
 	}
-
 
 	public Long countAll() {
 		return repository.count();
