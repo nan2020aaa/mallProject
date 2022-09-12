@@ -1,8 +1,5 @@
 package com.example.demo.controllers.pms;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,12 +37,12 @@ public class PmsProductController {
 
 		PmsProduct data = new PmsProduct();
 		BeanUtils.copyProperties(param, data);
-    log.info("BeanCopy完成：{}", data);
+		log.info("BeanCopy完成：{}", data);
 
 		if (productService.create(data)) {
 			log.info("DBに保存完成：{}", data);
 			return new CommonResult(200, null, "OK");
-		}else {
+		} else {
 			return new CommonResult(500, null, "System Error");
 		}
 	}
@@ -68,12 +65,14 @@ public class PmsProductController {
 //		pmsProductList.add(productService.getByPublishStatus(publishStatus));
 //		pmsProductList.add(productService.getByVerifyStatus(verifyStatus));
 
-		Pageable paging = PageRequest.of(pageNum, pageSize);
+		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
+		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
 		Page<PmsProduct> pmsProductList = productService.findAll(paging);
+		log.info("ページの導入完成、内容は: " + pmsProductList.toString() + ".");
 
 		return new CommonResult(200, new CommonPage<PmsProduct>(pmsProductList.toList(), pageNum, pageSize,
-				productService.countAll(), productService.getTotalPageDependsEvenOrOdd(pageSize)), "OK");
+				productService.countAll(), productService.getTotalPageDependsOnContent(pageSize)), "OK");
 
 	}
 }
