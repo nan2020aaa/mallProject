@@ -1,6 +1,10 @@
 package com.example.demo.services.pms;
 
+//import java.awt.print.Pageable;
+
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.data.domain.Page;
+//import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.pms.PmsProduct;
@@ -45,6 +49,9 @@ public class PmsProductService {
 	
 	public PmsProduct getByVerifyStatus(Integer verifyStatus) {
 		return repository.getByVerifyStatus(verifyStatus);
+		
+//	Pageable paging=PageRequest.of(1, 5);
+//	Page<PmsProduct>productList=PmsProductRepository.findAll(paging);
 	}
 
 }

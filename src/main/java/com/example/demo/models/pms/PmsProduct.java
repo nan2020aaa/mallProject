@@ -2,6 +2,8 @@ package com.example.demo.models.pms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Data;
@@ -57,6 +59,7 @@ public class PmsProduct {
 
 	// 库存预警值
 	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Long id;
 
 	@Column
