@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,20 +54,28 @@ public class PmsProductController {
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list")
+	public CommonResult list(
+			/* @RequestParam Long brandId, @RequestParam String keyword, */@RequestParam Integer pageNum,
+			@RequestParam Integer pageSize/*
+											 * , @RequestParam Long productCategoryId, @RequestParam String productSn,
+											 * 
+											 * @RequestParam Integer publishStatus, @RequestParam Integer verifyStatus
+											 */) {
 
-	public CommonResult list(@RequestParam Long brandId, @RequestParam String keyword, @RequestParam Integer pageNum,
-			@RequestParam Integer pageSize, @RequestParam Long productCategoryId, @RequestParam String productSn,
-			@RequestParam Integer publishStatus, @RequestParam Integer verifyStatus) {
+//		List<Object> pmsProductList = new ArrayList<>();
+//
+//		pmsProductList.add(productService.getByBrandId(brandId));
+//		pmsProductList.add(productService.getByKeywords(keyword));
+//		pmsProductList.add(productService.getByProductCategoryId(productCategoryId));
+//		pmsProductList.add(productService.getByProductSn(productSn));
+//		pmsProductList.add(productService.getByPublishStatus(publishStatus));
+//		pmsProductList.add(productService.getByVerifyStatus(verifyStatus));
 
-		List<Object> pmsProductList = new ArrayList<>();
+		Pageable paging = PageRequest.of(pageNum, pageSize);
 
-		pmsProductList.add(productService.getByBrandId(brandId));
-		pmsProductList.add(productService.getByKeywords(keyword));
-		pmsProductList.add(productService.getByProductCategoryId(productCategoryId));
-		pmsProductList.add(productService.getByProductSn(productSn));
-		pmsProductList.add(productService.getByPublishStatus(publishStatus));
-		pmsProductList.add(productService.getByVerifyStatus(verifyStatus));
-		return new CommonResult(200, new CommonPage(pmsProductList, pageNum, pageSize, 1l, 1), "OK");
+		Page<PmsProduct> pmsProductList = productService.findAll(paging);
 
+		return new CommonResult(200, new CommonPage<PmsProduct>(pmsProductList.toList(), pageNum, pageSize,
+				productService.countAll(), productService.getTotalPageDependsEvenOrOdd(pageSize)), "OK");
 	}
 }
