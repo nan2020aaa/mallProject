@@ -1,8 +1,5 @@
 package com.example.demo.controllers.pms;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -70,11 +67,13 @@ public class PmsProductController {
 //		pmsProductList.add(productService.getByVerifyStatus(verifyStatus));
 
 		Pageable paging = PageRequest.of(pageNum, pageSize);
+		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
 		Page<PmsProduct> pmsProductList = productService.findAll(paging);
+		log.info("ページの導入完成、内容は: " + pmsProductList.toString() + ".");
 
 		return new CommonResult(200, new CommonPage<PmsProduct>(pmsProductList.toList(), pageNum, pageSize,
-				productService.countAll(), productService.getTotalPageDependsEvenOrOdd(pageSize)), "OK");
+				productService.countAll(), productService.getTotalPageDependsOnContent(pageSize)), "OK");
 
 	}
 }
