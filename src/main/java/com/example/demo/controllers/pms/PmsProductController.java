@@ -40,8 +40,7 @@ public class PmsProductController {
 
 		PmsProduct data = new PmsProduct();
 		BeanUtils.copyProperties(param, data);
-
-		log.info("BeanCopy完成：{}", data);
+    log.info("BeanCopy完成：{}", data);
 
 		if (productService.create(data)) {
 			log.info("DBに保存完成：{}", data);
@@ -49,7 +48,6 @@ public class PmsProductController {
 		}else {
 			return new CommonResult(500, null, "System Error");
 		}
-		
 	}
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
