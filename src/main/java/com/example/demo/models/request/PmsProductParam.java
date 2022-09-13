@@ -67,7 +67,7 @@ public class PmsProductParam {
 	
 	private String note;
 
-	// 优选专区和商品的关系
+//	 优选专区和商品的关系
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
 //	private List<CmsPrefrenceAreaProductRelation> prefrenceAreaProductRelationList;
 

@@ -51,25 +51,25 @@ public class PmsProductService {
 
 	public PmsProduct getByVerifyStatus(Integer verifyStatus) {
 		return repository.getByVerifyStatus(verifyStatus);
-		
-//	Pageable paging=PageRequest.of(1, 5);
-//	Page<PmsProduct>productList=PmsProductRepository.findAll(paging);
 	}
 
-
 	public Long countAll() {
+		log.info("countメソッドを呼び出した。");
 		return repository.count();
 	}
 
-	public Integer getTotalPageDependsEvenOrOdd(Integer pageSize) {
+	public Integer getTotalPageDependsOnContent(Integer pageSize) {
 		if (countAll() % pageSize == 0) {
+			log.info("getTotalPageメソッドを呼び出した、要求されたページは内容で満たされている。");
 			return (int) (countAll() / pageSize);
 		} else {
+			log.info("getTotalPageメソッドを呼び出した、要求されたページは内容で満たされていない。");
 			return (int) ((countAll() / pageSize) + 1);
 		}
 	}
-	
-	public Page<PmsProduct> findAll(Pageable paging){
+
+	public Page<PmsProduct> findAll(Pageable paging) {
+		log.info("findAllメソッドを呼び出した。");
 		return repository.findAll(paging);
 	}
 
