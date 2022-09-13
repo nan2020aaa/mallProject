@@ -3,6 +3,7 @@ package com.example.demo.controllers.pms;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.models.pms.PmsBrand;
+import com.example.demo.models.pms.PmsProduct;
+import com.example.demo.models.request.PmsBrandParam;
 import com.example.demo.models.response.CommonResult;
 import com.example.demo.services.pms.PmsBrandService;
 
@@ -26,12 +29,14 @@ public class PmsBrandController {
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@PostMapping("/create")
-	public CommonResult create(@RequestBody PmsBrand param) { // 传入参数为 RequestBody （在文档中标识为 body）
+	public CommonResult create(@RequestBody PmsBrandParam param) { // 传入参数为 RequestBody （在文档中标识为 body）
 
 		log.info("PmsBrandController, /create, パラメータを受け取った：{}", param);
-
-		if (brandService.create(param)) {
-			log.info("DBに保存完成：{}", param);
+		PmsBrand data = new PmsBrand();
+		BeanUtils.copyProperties(param, data);
+		log.info("BeanCopy完成：{}", data);
+		if (brandService.create(data)) {
+			log.info("DBに保存完成：{}", data);
 			return new CommonResult(200, null, "OK");
 		} else {
 			return new CommonResult(500, null, "System Error");

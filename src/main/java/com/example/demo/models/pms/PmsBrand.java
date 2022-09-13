@@ -2,6 +2,8 @@ package com.example.demo.models.pms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Data;
@@ -28,6 +30,7 @@ public class PmsBrand {
 	private String firstLetter;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
 
 	// 品牌logo
