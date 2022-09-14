@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CommonPage<T> {
+public class CommonPage {
 
-	private List<T> list;
+	private Object list;
 
 	private Integer pageNum;
 

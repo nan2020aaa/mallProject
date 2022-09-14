@@ -29,29 +29,29 @@ public class PmsProductService {
 		return true;
 	}
 
-	public PmsProduct getByBrandId(Long id) {
-		return repository.getByBrandId(id);
-	}
-
-	public PmsProduct getByKeywords(String keyword) {
-		return repository.getByKeywords(keyword);
-	}
-
-	public PmsProduct getByProductCategoryId(Long productCategoryId) {
-		return repository.getByProductCategoryId(productCategoryId);
-	}
-
-	public PmsProduct getByProductSn(String productSn) {
-		return repository.getByProductSn(productSn);
-	}
-
-	public PmsProduct getByPublishStatus(Integer publishStatus) {
-		return repository.getByPublishStatus(publishStatus);
-	}
-
-	public PmsProduct getByVerifyStatus(Integer verifyStatus) {
-		return repository.getByVerifyStatus(verifyStatus);
-	}
+//	public PmsProduct getByBrandId(Long id) {
+//		return repository.findByBrandId(id);
+//	}
+//
+//	public PmsProduct getByKeywords(String keyword) {
+//		return repository.findByKeywords(keyword);
+//	}
+//
+//	public PmsProduct getByProductCategoryId(Long productCategoryId) {
+//		return repository.findByProductCategoryId(productCategoryId);
+//	}
+//
+//	public PmsProduct getByProductSn(String productSn) {
+//		return repository.findByProductSn(productSn);
+//	}
+//
+//	public PmsProduct getByPublishStatus(Integer publishStatus) {
+//		return repository.findByPublishStatus(publishStatus);
+//	}
+//
+//	public PmsProduct getByVerifyStatus(Integer verifyStatus) {
+//		return repository.findByVerifyStatus(verifyStatus);
+//	}
 
 	public Long countAll() {
 		log.info("countメソッドを呼び出した。");

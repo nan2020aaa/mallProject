@@ -33,16 +33,16 @@ public class PmsProductCategoryController {
 
 		log.info("PmsProductCategoryController, /create, パラメータを受け取った：{}", param);
 
-		PmsProductCategory data = new PmsProductCategory();
+		PmsProductCategory data = PmsProductCategory.builder().build();
 		BeanUtils.copyProperties(param, data);
 		log.info("BeanCopy完成：{}", data);
 		productCategoryService.setLevel(data);
 
 		if (productCategoryService.create(data)) {
 			log.info("DBに保存完成：{}", data);
-			return new CommonResult(200, null, "OK");
+			return CommonResult.builder().code(200).data(null).message("OK").build();
 		} else {
-			return new CommonResult(500, null, "System Error");
+			return CommonResult.builder().code(500).data(null).message("OK").build();
 		}
 	}
 
@@ -52,7 +52,7 @@ public class PmsProductCategoryController {
 		List<PmsProductCategoryWithChildrenItem> targetList = new ArrayList<>();
 		List<PmsProductCategory> dataList = productCategoryService.findAll();
 		dataList.forEach((e) -> {
-			PmsProductCategoryWithChildrenItem tmpInstance = new PmsProductCategoryWithChildrenItem();
+			PmsProductCategoryWithChildrenItem tmpInstance = PmsProductCategoryWithChildrenItem.builder().build();
 			BeanUtils.copyProperties(e, tmpInstance);
 			if (tmpInstance.getParentId() == 0) {
 				targetList.add(tmpInstance);
@@ -61,6 +61,6 @@ public class PmsProductCategoryController {
 		targetList.forEach((e) -> {
 			productCategoryService.setChildrenItem(e);
 		});
-		return new CommonResult(200, targetList, "OK");
+		return CommonResult.builder().code(200).data(targetList).message("OK").build();
 	}
 }

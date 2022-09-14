@@ -19,6 +19,7 @@ import com.example.demo.models.response.CommonPage;
 import com.example.demo.models.response.CommonResult;
 import com.example.demo.services.pms.PmsProductService;
 
+import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/product") // 所有本类中方法的请求路径都以 /product 开头
@@ -35,15 +36,15 @@ public class PmsProductController {
 
 		log.info("PmsProductController, /create, パラメータを受け取った：{}", param);
 
-		PmsProduct data = new PmsProduct();
+		PmsProduct data = PmsProduct.builder().build();
 		BeanUtils.copyProperties(param, data);
 		log.info("BeanCopy完成：{}", data);
 
 		if (productService.create(data)) {
 			log.info("DBに保存完成：{}", data);
-			return new CommonResult(200, null, "OK");
+			return CommonResult.builder().code(200).data(null).message("OK").build();
 		} else {
-			return new CommonResult(500, null, "System Error");
+			return CommonResult.builder().code(500).data(null).message("OK").build();
 		}
 	}
 
@@ -69,11 +70,14 @@ public class PmsProductController {
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
-		Page<PmsProduct> pmsProductList = productService.findAll(paging);
-		log.info("ページの導入完成、内容は: " + pmsProductList.toString() + ".");
+		Page<PmsProduct> pmsProductPage = productService.findAll(paging);
+		log.info("ページの導入完成、内容は: " + pmsProductPage.toString() + ".");
 
-		return new CommonResult(200, new CommonPage<PmsProduct>(pmsProductList.toList(), pageNum, pageSize,
-				productService.countAll(), productService.getTotalPageDependsOnContent(pageSize)), "OK");
+		return CommonResult.builder().code(200)
+				.data(CommonPage.builder().list(pmsProductPage.toList()).pageNum(pageNum).pageSize(pageSize)
+						.total(productService.countAll())
+						.totalPage(productService.getTotalPageDependsOnContent(pageSize)).build())
+				.message("OK").build();
 
 	}
 }
