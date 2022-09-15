@@ -1,7 +1,5 @@
 package com.example.demo.models.response;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CommonPage<T> {
+public class CommonPage {
 
-	private List<T> list;
+	private Object list;
 
 	private Integer pageNum;
 

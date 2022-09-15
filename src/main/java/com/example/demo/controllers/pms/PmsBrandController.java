@@ -32,9 +32,9 @@ public class PmsBrandController {
 
 		if (brandService.create(param)) {
 			log.info("DBに保存完成：{}", param);
-			return new CommonResult(200, null, "OK");
+			return CommonResult.builder().code(200).data(null).message("OK").build();
 		} else {
-			return new CommonResult(500, null, "System Error");
+			return CommonResult.builder().code(500).data(null).message("System error").build();
 		}
 	}
 
@@ -47,6 +47,6 @@ public class PmsBrandController {
 			targetList.add(e);
 		});
 		log.info("targetList添加成功、" + targetList.toString());
-		return new CommonResult(200, targetList, "OK");
+		return CommonResult.builder().code(200).data(targetList).message("OK").build();
 	}
 }

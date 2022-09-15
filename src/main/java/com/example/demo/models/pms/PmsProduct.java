@@ -6,12 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @Entity
+@Builder
+@AllArgsConstructor
 public class PmsProduct {
 	// 画册图片，连产品图片限制为5张，以逗号分割
 	@Column
@@ -59,7 +63,7 @@ public class PmsProduct {
 
 	// 库存预警值
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
 
 	@Column
