@@ -19,7 +19,6 @@ import com.example.demo.models.response.CommonPage;
 import com.example.demo.models.response.CommonResult;
 import com.example.demo.services.pms.PmsProductService;
 
-import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/product") // 所有本类中方法的请求路径都以 /product 开头

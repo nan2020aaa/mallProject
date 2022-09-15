@@ -13,10 +13,12 @@ import com.example.demo.models.pms.PmsSkuStock;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class PmsProductParam {
 	// 画册图片，连产品图片限制为5张，以逗号分割
 	private String albumPics;
