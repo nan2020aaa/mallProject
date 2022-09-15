@@ -1,7 +1,5 @@
 package com.example.demo.services.pms;
 
-//import java.awt.print.Pageable;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
@@ -17,41 +15,14 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class PmsProductService {
-
 	@Autowired
 	private PmsProductRepository repository;
 
 	public boolean create(PmsProduct data) {
-
 		repository.save(data);
-
 		log.info("PmsProductService, create(), DBに保存完成：{}", data);
 		return true;
 	}
-
-//	public PmsProduct getByBrandId(Long id) {
-//		return repository.findByBrandId(id);
-//	}
-//
-//	public PmsProduct getByKeywords(String keyword) {
-//		return repository.findByKeywords(keyword);
-//	}
-//
-//	public PmsProduct getByProductCategoryId(Long productCategoryId) {
-//		return repository.findByProductCategoryId(productCategoryId);
-//	}
-//
-//	public PmsProduct getByProductSn(String productSn) {
-//		return repository.findByProductSn(productSn);
-//	}
-//
-//	public PmsProduct getByPublishStatus(Integer publishStatus) {
-//		return repository.findByPublishStatus(publishStatus);
-//	}
-//
-//	public PmsProduct getByVerifyStatus(Integer verifyStatus) {
-//		return repository.findByVerifyStatus(verifyStatus);
-//	}
 
 	public Long countAll() {
 		log.info("countメソッドを呼び出した。");
@@ -72,5 +43,4 @@ public class PmsProductService {
 		log.info("findAllメソッドを呼び出した。");
 		return repository.findAll(paging);
 	}
-
 }

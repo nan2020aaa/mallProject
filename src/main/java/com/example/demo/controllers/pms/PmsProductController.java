@@ -49,23 +49,7 @@ public class PmsProductController {
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list")
-	public CommonResult list(
-			/* @RequestParam Long brandId, @RequestParam String keyword, */@RequestParam Integer pageNum,
-			@RequestParam Integer pageSize/*
-											 * , @RequestParam Long productCategoryId, @RequestParam String productSn,
-											 * 
-											 * @RequestParam Integer publishStatus, @RequestParam Integer verifyStatus
-											 */) {
-
-//		List<Object> pmsProductList = new ArrayList<>();
-//
-//		pmsProductList.add(productService.getByBrandId(brandId));
-//		pmsProductList.add(productService.getByKeywords(keyword));
-//		pmsProductList.add(productService.getByProductCategoryId(productCategoryId));
-//		pmsProductList.add(productService.getByProductSn(productSn));
-//		pmsProductList.add(productService.getByPublishStatus(publishStatus));
-//		pmsProductList.add(productService.getByVerifyStatus(verifyStatus));
-
+	public CommonResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 

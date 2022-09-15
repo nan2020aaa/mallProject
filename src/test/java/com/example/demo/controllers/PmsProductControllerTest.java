@@ -35,25 +35,7 @@ public class PmsProductControllerTest {
 		when(pmsProductService.create(any())).thenReturn(true);
 
 		// 构造Product参数表
-		PmsProductParam param = PmsProductParam.builder()
-				/*
-				 * .albumPics("string").brandId(0l).brandName("string")
-				 * .deleteStatus(0).description("string").detailDesc("string").detailHtml(
-				 * "string")
-				 * .detailMobileHtml("string").detailTitle("string").feightTemplateId(0l).
-				 * giftGrowth(0).giftPoint(0)
-				 * .keywords("string").lowStock(0).name("string").newStatus(0).note("string").
-				 * originalPrice(0.0)
-				 * .previewStatus(0).price(0.0).productAttributeCategoryId(0l).productCategoryId
-				 * (0l) .productCategoryName("string").productSn("string").promotionEndTime(
-				 * "2022-09-09T02:27:01.346Z")
-				 * .promotionPerLimit(0).promotionPrice(0.0).promotionStartTime(
-				 * "2022-09-09T02:27:01.346Z")
-				 * .promotionType(0).publishStatus(0).recommandStatus(0).sale(0).serviceIds(
-				 * "string").sort(0).stock(0)
-				 * .subTitle("string").unit("string").usePointLimit(0).verifyStatus(0).weight(0.
-				 * 0)
-				 */.build();
+		PmsProductParam param = PmsProductParam.builder().build();
 
 		// 将参数表转换为json格式
 		ObjectMapper mapper = new ObjectMapper();
@@ -78,25 +60,7 @@ public class PmsProductControllerTest {
 		when(pmsProductService.create(any())).thenReturn(false);
 
 		// 构造Product参数表
-		PmsProductParam param = PmsProductParam.builder()
-				/*
-				 * .albumPics("string").brandId(0l).brandName("string")
-				 * .deleteStatus(0).description("string").detailDesc("string").detailHtml(
-				 * "string")
-				 * .detailMobileHtml("string").detailTitle("string").feightTemplateId(0l).
-				 * giftGrowth(0).giftPoint(0)
-				 * .keywords("string").lowStock(0).name("string").newStatus(0).note("string").
-				 * originalPrice(0.0)
-				 * .previewStatus(0).price(0.0).productAttributeCategoryId(0l).productCategoryId
-				 * (0l) .productCategoryName("string").productSn("string").promotionEndTime(
-				 * "2022-09-09T02:27:01.346Z")
-				 * .promotionPerLimit(0).promotionPrice(0.0).promotionStartTime(
-				 * "2022-09-09T02:27:01.346Z")
-				 * .promotionType(0).publishStatus(0).recommandStatus(0).sale(0).serviceIds(
-				 * "string").sort(0).stock(0)
-				 * .subTitle("string").unit("string").usePointLimit(0).verifyStatus(0).weight(0.
-				 * 0)
-				 */.build();
+		PmsProductParam param = PmsProductParam.builder().build();
 
 		// 将参数表转换为json格式
 		ObjectMapper mapper = new ObjectMapper();
@@ -115,7 +79,8 @@ public class PmsProductControllerTest {
 		assertEquals(expectResultJson, resultJson);
 	}
 
-//	@Test
-//	public void testList_Succeed() throws JsonProcessingException {
-//	}
+	@Test
+	public void testList_Succeed() {
+		
+	}
 }

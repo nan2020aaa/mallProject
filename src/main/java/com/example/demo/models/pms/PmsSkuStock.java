@@ -19,7 +19,7 @@ public class PmsSkuStock {
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "productParam_id")
 //	private PmsProductParam productParam;
-	
+
 	// 锁定库存
 	@Id
 	private Long id;

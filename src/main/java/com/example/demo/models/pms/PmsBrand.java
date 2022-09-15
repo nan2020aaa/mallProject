@@ -34,7 +34,7 @@ public class PmsBrand {
 	private String firstLetter;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	// 品牌logo
