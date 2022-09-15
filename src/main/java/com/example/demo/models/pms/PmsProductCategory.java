@@ -19,13 +19,22 @@ public class PmsProductCategory {
 	//@Column
 	private String icon;
 
-	// 分类级别：0->1级；1->2级
 	//@Id
 	private Long id;
 	//@Column
 	private String keywords;
+	
+	// 分类级别：0->1级；1->2级
 	//@Column
 	private Integer level;
+
+//	public Integer getLevel() {
+//		return level;
+//	}
+//
+//	public void setLevel(Integer level) {
+//		this.level = level;
+//	}
 
 	// 是否显示在导航栏：0->不显示；1->显示
 	//@Column
