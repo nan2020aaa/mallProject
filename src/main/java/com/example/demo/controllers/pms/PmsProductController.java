@@ -44,7 +44,7 @@ public class PmsProductController {
 			log.info("DBに保存完成：{}", data);
 			return CommonResult.builder().code(200).data(null).message("OK").build();
 		} else {
-			return CommonResult.builder().code(500).data(null).message("OK").build();
+			return CommonResult.builder().code(500).data(null).message("System error").build();
 		}
 	}
 
@@ -73,11 +73,9 @@ public class PmsProductController {
 		Page<PmsProduct> pmsProductPage = productService.findAll(paging);
 		log.info("ページの導入完成、内容は: " + pmsProductPage.toString() + ".");
 
-		return CommonResult.builder().code(200)
-				.data(CommonPage.builder().list(pmsProductPage.toList()).pageNum(pageNum).pageSize(pageSize)
-						.total(productService.countAll())
-						.totalPage(productService.getTotalPageDependsOnContent(pageSize)).build())
-				.message("OK").build();
-
+		CommonPage commonPage = CommonPage.builder().list(pmsProductPage.toList()).pageNum(pageNum).pageSize(pageSize)
+				.total(productService.countAll()).totalPage(productService.getTotalPageDependsOnContent(pageSize))
+				.build();
+		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
 	}
 }
