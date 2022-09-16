@@ -2,6 +2,8 @@ package com.example.demo.models.pms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Data;
@@ -21,6 +23,7 @@ public class PmsProductCategory {
 
 	// 分类级别：0->1级；1->2级
 	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
 	@Column
 	private String keywords;
@@ -47,5 +50,7 @@ public class PmsProductCategory {
 
 	@Column
 	private Integer sort;
+	
+	
 
 }

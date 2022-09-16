@@ -10,24 +10,44 @@ import com.example.demo.models.pms.PmsProductCategory;
 import com.example.demo.models.pms.PmsProductCategoryWithChildrenItem;
 import com.example.demo.repositories.pms.PmsProductCategoryRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class PmsProductCategoryService {
-	
-	 @Autowired
-		private PmsProductCategoryRepository pmsProductCategoryRepository;
-	
+
+	@Autowired
+	private PmsProductCategoryRepository pmsProductCategoryRepository;
+
 	public boolean create(PmsProductCategory data) {
-	
+
+		pmsProductCategoryRepository.save(data);
+
 		return true;
 	}
-	
+
 	public List<PmsProductCategory> findAll() {
-		
+
 		return pmsProductCategoryRepository.findAll();
-		
-		
 	}
 
+	// 根据ParentId判断父子类
+	public void setLevel(PmsProductCategory e) {
+		if (e.getParentId() != 0) {
+			e.setLevel(1);
+		} else {
+			e.setLevel(0);
+		}
+	}
+
+	public void setChildrenItem(PmsProductCategoryWithChildrenItem e) {
+		if (e.getParentId() != 0) {
+			e.setChildren(null);
+		}else {
+			e.setChildren(pmsProductCategoryRepository.findByParentId(e.getId()));
+		}
+
+	}
 	
 
 }

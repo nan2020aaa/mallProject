@@ -1,54 +1,53 @@
 package com.example.demo.models.pms;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.util.List;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Data
-//@NoArgsConstructor
+@Data
+@NoArgsConstructor
 //@Entity
 public class PmsProductCategoryWithChildrenItem {
 	// 子级分类
-	//@Column
-	private PmsProductCategory children;
+	// @Column
+	private List<PmsProductCategory> children;
 
 	// 描述
-	//@Column
+	// @Column
 	private String description;
 
 	// 图标
-	//@Column
+	// @Column
 	private String icon;
 
 	// 分类级别：0->1级；1->2级
-	//@Id
+	// @Id
 	private Long id;
-	//@Column
+	// @Column
 	private String keywords;
-	//@Column
+	// @Column
 	private Integer level;
 
 	// 是否显示在导航栏：0->不显示；1->显示
-	//@Column
+	// @Column
 	private String name;
-	//@Column
+	// @Column
 	private Integer navStatus;
 
 	// 上机分类的编号：0表示一级分类
-	//@Id
+	// @Id
 	private Long parentId;
 
 	// 显示状态：0->不显示；1->显示
-	//@Column
+	// @Column
 	private Integer productCount;
-	//@Column
+	// @Column
 	private String productUnit;
-	//@Column
+	// @Column
 	private Integer showStatus;
 
-	//@Column
+	// @Column
 	private Integer sort;
+
 }

@@ -31,9 +31,12 @@ public class PmsProductCategoryController {
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@PostMapping("/create")
-	public CommonResult create(@RequestBody PmsProductCategory children) { // 传入参数为 RequestBody （在文档中标识为 body）
+	public CommonResult create(@RequestBody PmsProductCategoryParam param) { // 传入参数为 RequestBody （在文档中标识为 body）
+		PmsProductCategory data = new PmsProductCategory();
+		BeanUtils.copyProperties(param, data);
+		productCategoryService.setLevel(data);
 
-		if (productCategoryService.create(children)) {
+		if (productCategoryService.create(data)) {
 
 			return new CommonResult(200, null, "OK");
 		} else {
@@ -41,17 +44,34 @@ public class PmsProductCategoryController {
 		}
 	}
 
+	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list/withChildren")
 	public CommonResult listwithChildren() {
-		List<PmsProductCategoryWithChildrenItem> dataList = new ArrayList<>();
-		List<PmsProductCategory> getList = productCategoryService.findAll();
 
-		for (int i = 0; i < getList.size(); i++) {
-			PmsProductCategoryWithChildrenItem instance = new PmsProductCategoryWithChildrenItem();
-			dataList.add(instance);
+		List<PmsProductCategoryWithChildrenItem> dataList = new ArrayList<>();
+		log.info("------------------------------------:{}", dataList);
+		List<PmsProductCategory> categoryList = productCategoryService.findAll();
+		log.info("ページの導入完成、内容は: " + categoryList.toString() + ".");
+
+		// WithChildrenItem临时变量=PmsProductCategory
+
+		for (PmsProductCategory e : categoryList) {
+
+			PmsProductCategoryWithChildrenItem tmpInstance = new PmsProductCategoryWithChildrenItem();
+			BeanUtils.copyProperties(e, tmpInstance);
+
+			if (tmpInstance.getParentId() == 0) {
+				dataList.add(tmpInstance);
+
+			}
+			log.info("PmsProductCategoryWithChildrenItemのインスタンス：{}", tmpInstance);
+
 		}
 
-		// dataList.forEach(e)->{dataList};
+		for (PmsProductCategoryWithChildrenItem e : dataList) {
+			productCategoryService.setChildrenItem(e);
+			log.info("secondクラス分類：{}", dataList);
+		}
 
 		return new CommonResult(200, dataList, "ok");
 
