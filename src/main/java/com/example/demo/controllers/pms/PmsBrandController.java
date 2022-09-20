@@ -17,13 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.models.pms.PmsBrand;
-import com.example.demo.models.pms.PmsProduct;
 import com.example.demo.models.request.PmsBrandParam;
 import com.example.demo.models.response.CommonPage;
 import com.example.demo.models.response.CommonResult;
 import com.example.demo.services.pms.PmsBrandService;
 
-import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/brand") // 所有本类中方法的请求路径都以 /brand 开头
@@ -65,10 +63,10 @@ public class PmsBrandController {
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
-		Page<PmsBrand> pmsProductPage = brandService.findAll(paging);
-		log.info("ページの導入完成、内容は: " + pmsProductPage.toString() + ".");
+		Page<PmsBrand> pmsBrandPage = brandService.findAll(paging);
+		log.info("ページの導入完成、内容は: " + pmsBrandPage.toString() + ".");
 
-		CommonPage commonPage = CommonPage.builder().list(pmsProductPage.toList()).pageNum(pageNum).pageSize(pageSize)
+		CommonPage commonPage = CommonPage.builder().list(pmsBrandPage.toList()).pageNum(pageNum).pageSize(pageSize)
 				.total(brandService.countAll()).totalPage(brandService.getTotalPageDependsOnContent(pageSize)).build();
 		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
 	}

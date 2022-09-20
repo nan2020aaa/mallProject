@@ -2,11 +2,15 @@ package com.example.demo.models.request;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class PmsProductCategoryParam {
 	// 描述
 	private String description;

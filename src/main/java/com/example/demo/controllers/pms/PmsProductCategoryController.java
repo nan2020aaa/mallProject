@@ -42,7 +42,7 @@ public class PmsProductCategoryController {
 			log.info("DBに保存完成：{}", data);
 			return CommonResult.builder().code(200).data(null).message("OK").build();
 		} else {
-			return CommonResult.builder().code(500).data(null).message("OK").build();
+			return CommonResult.builder().code(500).data(null).message("System error").build();
 		}
 	}
 

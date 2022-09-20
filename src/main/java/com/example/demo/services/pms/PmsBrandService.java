@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.pms.PmsBrand;
-import com.example.demo.models.pms.PmsProduct;
 import com.example.demo.repositories.pms.PmsBrandRepository;
 
 import lombok.extern.slf4j.Slf4j;
