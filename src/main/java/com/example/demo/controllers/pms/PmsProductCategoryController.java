@@ -5,17 +5,23 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.demo.models.pms.PmsProduct;
 import com.example.demo.models.pms.PmsProductCategory;
 import com.example.demo.models.pms.PmsProductCategoryWithChildrenItem;
 import com.example.demo.models.request.PmsProductCategoryParam;
 import com.example.demo.models.request.PmsProductParam;
+import com.example.demo.models.response.CommonPage;
 import com.example.demo.models.response.CommonResult;
 import com.example.demo.services.pms.PmsProductCategoryService;
 
@@ -24,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/productCategory") // 所有本类中方法的请求路径都以 /productCategory 开头
 @Controller
 @Slf4j
-public class PmsProductCategoryController {
+public class PmsProductCategoryController<PmsProductCategoryList> {
 
 	@Autowired
 	private PmsProductCategoryService productCategoryService;
@@ -76,5 +82,36 @@ public class PmsProductCategoryController {
 		return new CommonResult(200, dataList, "ok");
 
 	}
+	
+	//分页查询商品分类
+
+	@ResponseBody // 返回值为 ResponseBody 的内容
+	@GetMapping("/list/{parentId}")
+	
+	public CommonResult list(@RequestParam Integer pageNum,@RequestParam Integer pageSize){
+		
+		Pageable paging = PageRequest.of(pageNum-1, pageSize);
+		Page<PmsProductCategory> pmsProductCategoryList = productCategoryService.findByParentId(paging);
+		
+		
+		if(pmsProductCategoryList.getParentId()==0) {
+			
+			
+		}		
+		
+//		PmsProductCategory tmpInstance = new PmsProductCategory();
+//		BeanUtils.copyProperties(pmsProductCategoryList, tmpInstance);
+//		if(tmpInstance.getParentId()==0) {
+//			pmsProductCategoryList.add(tmpInstance);
+			
+		//}
+		
+		CommonPage commonPage = CommonPage.builder().list(pmsProductCategoryList.toList()).pageNum(pageNum).pageSize(pageSize)
+				.total(productCategoryService.countAll())
+				.build();
+		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
+		
+	}
+	
 
 }

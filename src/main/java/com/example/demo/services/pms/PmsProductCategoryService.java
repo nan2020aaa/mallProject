@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.apache.logging.log4j.Level;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.models.pms.PmsProduct;
 import com.example.demo.models.pms.PmsProductCategory;
 import com.example.demo.models.pms.PmsProductCategoryWithChildrenItem;
 import com.example.demo.repositories.pms.PmsProductCategoryRepository;
@@ -48,6 +51,17 @@ public class PmsProductCategoryService {
 		}
 
 	}
+	public Page<PmsProductCategory> findAll(Pageable paging) {
+		return pmsProductCategoryRepository.findAll(paging);
+	}
 	
+	public Long countAll() {
+		return pmsProductCategoryRepository.count();
+	}
 
+	public Page<PmsProductCategory> findByParentId(Pageable paging) {
+		
+		return pmsProductCategoryRepository.findByParentId();
+	}
+	
 }
