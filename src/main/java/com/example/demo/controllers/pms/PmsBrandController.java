@@ -5,16 +5,21 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.models.pms.PmsBrand;
 import com.example.demo.models.pms.PmsProduct;
 import com.example.demo.models.request.PmsBrandParam;
+import com.example.demo.models.response.CommonPage;
 import com.example.demo.models.response.CommonResult;
 import com.example.demo.services.pms.PmsBrandService;
 
@@ -49,10 +54,22 @@ public class PmsBrandController {
 	public CommonResult listAll() {
 		log.info("listAllメソッド導入成功。");
 		List<PmsBrand> targetList = new ArrayList<>();
-		brandService.findAll().forEach((e) -> {
-			targetList.add(e);
-		});
+		targetList = brandService.findAll();
 		log.info("targetList添加成功、" + targetList.toString());
 		return CommonResult.builder().code(200).data(targetList).message("OK").build();
+	}
+
+	@ResponseBody // 返回值为 ResponseBody 的内容
+	@GetMapping("/list")
+	public CommonResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
+		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
+
+		Page<PmsBrand> pmsProductPage = brandService.findAll(paging);
+		log.info("ページの導入完成、内容は: " + pmsProductPage.toString() + ".");
+
+		CommonPage commonPage = CommonPage.builder().list(pmsProductPage.toList()).pageNum(pageNum).pageSize(pageSize)
+				.total(brandService.countAll()).totalPage(brandService.getTotalPageDependsOnContent(pageSize)).build();
+		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
 	}
 }
