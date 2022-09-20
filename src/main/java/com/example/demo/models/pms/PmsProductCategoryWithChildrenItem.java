@@ -1,19 +1,25 @@
 package com.example.demo.models.pms;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Data
-//@NoArgsConstructor
+@Data
+@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 //@Entity
 public class PmsProductCategoryWithChildrenItem {
 	// 子级分类
 	//@Column
-	private PmsProductCategory children;
+	private List<PmsProductCategory> children;
 
 	// 描述
 	//@Column
@@ -51,4 +57,5 @@ public class PmsProductCategoryWithChildrenItem {
 
 	//@Column
 	private Integer sort;
+	
 }

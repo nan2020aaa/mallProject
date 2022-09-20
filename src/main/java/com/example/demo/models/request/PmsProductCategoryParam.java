@@ -1,5 +1,7 @@
 package com.example.demo.models.request;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,8 +9,8 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Data
-//@NoArgsConstructor
+@Data
+@NoArgsConstructor
 //@Entity
 public class PmsProductCategoryParam {
 	// 描述
@@ -37,7 +39,7 @@ public class PmsProductCategoryParam {
 
 	// 产品相关筛选属性集合
 	//@Column
-	private Long productAttributeIdList;
+	private List <Long> productAttributeIdList;
 
 	// 分类单位
 	//@Column
