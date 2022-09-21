@@ -25,10 +25,6 @@ public class PmsProductCategoryService {
 		return true;
 	}
 
-	public List<PmsProductCategory> findAll() {
-		return repository.findAll();
-	}
-
 	// 根据parentId设置子分类的分类级别
 	public void setLevel(PmsProductCategory e) {
 		if (e.getParentId() != 0) {
@@ -38,12 +34,7 @@ public class PmsProductCategoryService {
 		}
 	}
 
-	// 根据parentId设置子分类的显示
-	public void setChildrenItem(PmsProductCategoryWithChildrenItem e) {
-		if (e.getParentId() != 0) {
-			e.setChildren(null);
-		} else {
-			e.setChildren(repository.findByParentId(e.getId()));
-		}
+	public List<PmsProductCategory> findByParentId(Long id) {
+		return repository.findByParentId(id);
 	}
 }

@@ -50,16 +50,14 @@ public class PmsProductCategoryController {
 	@GetMapping("/list/withChildren")
 	public CommonResult listWithChildren() {
 		List<PmsProductCategoryWithChildrenItem> targetList = new ArrayList<>();
-		List<PmsProductCategory> dataList = productCategoryService.findAll();
+		List<PmsProductCategory> dataList = productCategoryService.findByParentId(0l);
 		dataList.forEach((e) -> {
 			PmsProductCategoryWithChildrenItem tmpInstance = PmsProductCategoryWithChildrenItem.builder().build();
 			BeanUtils.copyProperties(e, tmpInstance);
-			if (tmpInstance.getParentId() == 0) {
-				targetList.add(tmpInstance);
-			}
+			targetList.add(tmpInstance);
 		});
 		targetList.forEach((e) -> {
-			productCategoryService.setChildrenItem(e);
+			e.setChildren(productCategoryService.findByParentId(e.getId()));
 		});
 		return CommonResult.builder().code(200).data(targetList).message("OK").build();
 	}
