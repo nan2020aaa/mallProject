@@ -50,4 +50,5 @@ public class PmsProductCategoryWithChildrenItem {
 	private Integer showStatus;
 
 	private Integer sort;
+
 }
