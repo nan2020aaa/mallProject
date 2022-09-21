@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
@@ -15,47 +17,39 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-//@Entity
+
 public class PmsProductCategoryWithChildrenItem {
+
 	// 子级分类
-	//@Column
 	private List<PmsProductCategory> children;
 
 	// 描述
-	//@Column
 	private String description;
 
 	// 图标
-	//@Column
 	private String icon;
 
-	// 分类级别：0->1级；1->2级
-	//@Id
 	private Long id;
-	//@Column
+
 	private String keywords;
-	//@Column
+
+	// 分类级别：0->1级；1->2级
 	private Integer level;
 
-	// 是否显示在导航栏：0->不显示；1->显示
-	//@Column
 	private String name;
-	//@Column
+
+	// 是否显示在导航栏：0->不显示；1->显示
 	private Integer navStatus;
 
-	// 上机分类的编号：0表示一级分类
-	//@Id
+	// 上级分类的编号：0表示一级分类
 	private Long parentId;
 
-	// 显示状态：0->不显示；1->显示
-	//@Column
 	private Integer productCount;
-	//@Column
+
 	private String productUnit;
-	//@Column
+
+	// 显示状态：0->不显示；1->显示
 	private Integer showStatus;
 
-	//@Column
 	private Integer sort;
-	
 }

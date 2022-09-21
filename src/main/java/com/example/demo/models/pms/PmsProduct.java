@@ -63,7 +63,7 @@ public class PmsProduct {
 
 	// 库存预警值
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column
