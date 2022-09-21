@@ -17,8 +17,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
+
 public class PmsProductCategoryWithChildrenItem {
-//	// 子级分类
+
+	// 子级分类
 	private List<PmsProductCategory> children;
 
 	// 描述
@@ -50,5 +52,4 @@ public class PmsProductCategoryWithChildrenItem {
 	private Integer showStatus;
 
 	private Integer sort;
-
 }
