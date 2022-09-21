@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,15 +78,16 @@ public class PmsProductCategoryController {
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list/{parentId}")
-	public CommonResult listProductCategory(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+	public CommonResult listProductCategory(@RequestParam Integer pageNum, @RequestParam Integer pageSize,
+			@PathVariable Long parentId) {
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
-		Page<PmsProductCategory> categoryList = productCategoryService.findAll(paging);
+		Page<PmsProductCategory> categoryList = productCategoryService.findByParentId(parentId, paging);
 		log.info("ページの導入完成、内容は: " + categoryList.toString() + ".");
 
 		CommonPage commonPage = CommonPage.builder().list(categoryList.toList()).pageNum(pageNum).pageSize(pageSize)
-				.total(productCategoryService.countAll()).build();
+				.total(productCategoryService.countParentId(parentId)).build();
 		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
 	}
 }

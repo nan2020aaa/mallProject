@@ -24,11 +24,13 @@ public class PmsProductCategoryService {
 		return repository.findAll();
 	}
 	
-	
-	
 	public Long countAll() {
 		log.info("countメソッドを呼び出した。");
 		return repository.count();
+	}
+	
+	public Long countParentId(Long parentId) {
+		return repository.countByParentId(parentId);
 	}
 	
 	public Page<PmsProductCategory> findAll(Pageable paging) {
@@ -36,6 +38,10 @@ public class PmsProductCategoryService {
 		return repository.findAll(paging);
 	}
 
+	public Page<PmsProductCategory> findByParentId(Long parentId,Pageable paging){
+		return repository.findByParentId(parentId, paging);
+	}
+	
 	public boolean create(PmsProductCategory data) {
 		repository.save(data);
 
@@ -66,7 +72,6 @@ public class PmsProductCategoryService {
 		} else {
 			e.setChildren(repository.findByParentId(e.getId()));
 		}
-
 	}
 
 }
