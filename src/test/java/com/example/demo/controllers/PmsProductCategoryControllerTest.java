@@ -103,8 +103,8 @@ public class PmsProductCategoryControllerTest {
 		setList.add(pmsProductCategory2);
 
 		// 设置Service层桩对象的返回结果
-		when(pmsProductCategoryService.findByParentId(0l)).thenReturn(dataList);
-		when(pmsProductCategoryService.findByParentId(1l)).thenReturn(setList);
+//		when(pmsProductCategoryService.findByParentId(0l)).thenReturn(dataList);
+//		when(pmsProductCategoryService.findByParentId(1l)).thenReturn(setList);
 
 		// 使用MockMvc对象的perform方法访问服务器输入参数；使用jsonPath方法断言结果的值
 		mockMvc.perform(get("/productCategory/list/withChildren")).andExpect(jsonPath("$.code").value(200))
