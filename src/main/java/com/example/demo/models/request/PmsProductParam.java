@@ -1,24 +1,20 @@
 package com.example.demo.models.request;
 
-import java.util.List;
-
-import com.example.demo.models.cms.CmsPrefrenceAreaProductRelation;
-import com.example.demo.models.cms.CmsSubjectProductRelation;
-import com.example.demo.models.pms.PmsMemberPrice;
-import com.example.demo.models.pms.PmsProductAttributeValue;
-import com.example.demo.models.pms.PmsProductFullReduction;
-import com.example.demo.models.pms.PmsProductLadder;
-import com.example.demo.models.pms.PmsSkuStock;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PmsProductParam {
 	// 画册图片，连产品图片限制为5张，以逗号分割
 	private String albumPics;
-	
+
 	private Long brandId;
-	
+
 	// 品牌名称
 	private String brandName;
 
@@ -30,7 +26,7 @@ public class PmsProductParam {
 
 	// 产品详情网页内容
 	private String detailDesc;
-	
+
 	private String detailHtml;
 
 	// 移动端网页详情
@@ -38,19 +34,17 @@ public class PmsProductParam {
 
 	// 赠送的成长值
 	private String detailTitle;
-	
+
 	private Long feightTemplateId;
-	
+
 	private Integer giftGrowth;
 
 	// 赠送的积分
 	private Integer giftPoint;
 
-	// 库存预警值
-	private Long id;
-	
 	private String keywords;
-	
+
+	// 库存预警值
 	private Integer lowStock;
 
 	// 商品会员价格设置
@@ -59,12 +53,12 @@ public class PmsProductParam {
 
 	// 新品状态：0->不是新品；1->新品
 	private String name;
-	
+
 	private Integer newStatus;
 
-	//市场价
+	// 市场价
 	private Double originalPrice;
-	
+
 	private String note;
 
 //	 优选专区和商品的关系
@@ -73,10 +67,10 @@ public class PmsProductParam {
 
 	// 是否为预告商品：0->不是；1->是
 	private Integer previewStatus;
-	
+
 	// 商品参数及自定义规格属性
 	private Double price;
-	
+
 	private Long productAttributeCategoryId;
 
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productParam")
@@ -84,7 +78,7 @@ public class PmsProductParam {
 
 	// 商品分类名称
 	private Long productCategoryId;
-	
+
 	private String productCategoryName;
 
 	// 商品满减价格设置
@@ -104,10 +98,10 @@ public class PmsProductParam {
 	// 活动限购数量
 	private Integer promotionPerLimit;
 
-	//促销价格
+	// 促销价格
 	private Double promotionPrice;
-	
-	//促销开始时间
+
+	// 促销开始时间
 	private String promotionStartTime;
 
 	// 促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购
@@ -150,7 +144,7 @@ public class PmsProductParam {
 
 	// 审核状态：0->未审核；1->审核通过
 	private Integer verifyStatus;
-	
-	//商品重量，默认为克
+
+	// 商品重量，默认为克
 	private Double weight;
 }

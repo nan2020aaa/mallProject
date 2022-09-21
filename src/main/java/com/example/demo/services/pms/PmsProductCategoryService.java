@@ -1,14 +1,10 @@
 package com.example.demo.services.pms;
 
 import java.util.List;
-
-import org.apache.logging.log4j.Level;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import com.example.demo.models.pms.PmsProduct;
 import com.example.demo.models.pms.PmsProductCategory;
 import com.example.demo.models.pms.PmsProductCategoryWithChildrenItem;
 import com.example.demo.repositories.pms.PmsProductCategoryRepository;
@@ -20,21 +16,17 @@ import lombok.extern.slf4j.Slf4j;
 public class PmsProductCategoryService {
 
 	@Autowired
-	private PmsProductCategoryRepository pmsProductCategoryRepository;
+	private PmsProductCategoryRepository repository;
 
 	public boolean create(PmsProductCategory data) {
 
-		pmsProductCategoryRepository.save(data);
+		repository.save(data);
 
+		log.info("PmsProductCategoryService, create(), DBに保存完成：{}", data);
 		return true;
 	}
 
-	public List<PmsProductCategory> findAll() {
-
-		return pmsProductCategoryRepository.findAll();
-	}
-
-	// 根据ParentId判断父子类
+	// 根据parentId设置子分类的分类级别
 	public void setLevel(PmsProductCategory e) {
 		if (e.getParentId() != 0) {
 			e.setLevel(1);
@@ -43,28 +35,7 @@ public class PmsProductCategoryService {
 		}
 	}
 
-	public void setChildrenItem(PmsProductCategoryWithChildrenItem e) {
-		if (e.getParentId() != 0) {
-			e.setChildren(null);
-		}else {
-			e.setChildren(pmsProductCategoryRepository.findByParentId(e.getId()));
-		}
-
+	public List<PmsProductCategory> findByParentId(Long id) {
+		return repository.findByParentId(id);
 	}
-	public Page<PmsProductCategory> findAll(Pageable paging) {
-		return pmsProductCategoryRepository.findAll(paging);
-	}
-	
-	public Long countAll(PmsProductCategory e) {
-		if(e.getParentId()==0) {
-			
-		}
-		return pmsProductCategoryRepository.count();
-	}
-
-	public Page<PmsProductCategory> findByParentId(Long parentId,Pageable paging) {
-		
-		return pmsProductCategoryRepository.findByParentId(parentId,paging);
-	}
-	
 }
