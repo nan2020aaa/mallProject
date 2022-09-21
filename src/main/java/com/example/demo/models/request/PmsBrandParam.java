@@ -1,10 +1,14 @@
 package com.example.demo.models.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class PmsBrandParam {
 	// 品牌大图
 	private String bigPic;
