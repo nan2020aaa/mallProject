@@ -55,13 +55,16 @@ public class PmsProductCategoryService {
 		return pmsProductCategoryRepository.findAll(paging);
 	}
 	
-	public Long countAll() {
+	public Long countAll(PmsProductCategory e) {
+		if(e.getParentId()==0) {
+			
+		}
 		return pmsProductCategoryRepository.count();
 	}
 
-	public Page<PmsProductCategory> findByParentId(Pageable paging) {
+	public Page<PmsProductCategory> findByParentId(Long parentId,Pageable paging) {
 		
-		return pmsProductCategoryRepository.findByParentId();
+		return pmsProductCategoryRepository.findByParentId(parentId,paging);
 	}
 	
 }
