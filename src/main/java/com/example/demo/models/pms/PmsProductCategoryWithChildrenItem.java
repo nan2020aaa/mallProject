@@ -1,7 +1,6 @@
 package com.example.demo.models.pms;
 
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,19 +15,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 public class PmsProductCategoryWithChildrenItem {
-	// 子级分类
-	// @Column
-
+//	// 子级分类
 	private List<PmsProductCategory> children;
 
 	// 描述
-	// @Column
-
 	private String description;
 
 	// 图标
-
-	// @Column
 	private String icon;
 
 	private Long id;

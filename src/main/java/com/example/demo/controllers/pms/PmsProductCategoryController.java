@@ -16,24 +16,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.models.pms.PmsProductCategory;
 import com.example.demo.models.pms.PmsProductCategoryWithChildrenItem;
 import com.example.demo.models.request.PmsProductCategoryParam;
+
 import com.example.demo.models.response.CommonResult;
 import com.example.demo.services.pms.PmsProductCategoryService;
 
 import lombok.extern.slf4j.Slf4j;
 
+
 @RequestMapping("/productCategory") // 所有本类中方法的请求路径都以 /product 开头
 @Controller
 @Slf4j
 public class PmsProductCategoryController {
+
 	@Autowired
 	private PmsProductCategoryService productCategoryService;
-
+  
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@PostMapping("/create")
 	public CommonResult create(@RequestBody PmsProductCategoryParam param) { // 传入参数为 RequestBody （在文档中标识为 body）
-
 		log.info("PmsProductCategoryController, /create, パラメータを受け取った：{}", param);
-
 		PmsProductCategory data = PmsProductCategory.builder().build();
 		BeanUtils.copyProperties(param, data);
 		log.info("BeanCopy完成：{}", data);
@@ -49,6 +50,7 @@ public class PmsProductCategoryController {
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list/withChildren")
+
 	public CommonResult listWithChildren() {
 		List<PmsProductCategoryWithChildrenItem> targetList = new ArrayList<>();
 		List<PmsProductCategory> dataList = productCategoryService.findByParentId(0l);

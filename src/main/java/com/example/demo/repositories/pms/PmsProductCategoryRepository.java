@@ -11,5 +11,4 @@ import com.example.demo.models.pms.PmsProductCategory;
 public interface PmsProductCategoryRepository extends JpaRepository<PmsProductCategory, Long> {
 
 	List<PmsProductCategory> findByParentId(Long parentId);
-
 }
