@@ -89,7 +89,7 @@ public class PmsBrandControllerTest {
 	}
 
 	@Test
-	public void testList_HasRemainderRecord_Succeed() throws UnsupportedEncodingException, Exception {
+	public void testList_HasRemainderRecordAndKeywordIsNull_Succeed() throws UnsupportedEncodingException, Exception {
 		// 模拟结果的body部分显示的PmsBrand列表
 		PmsBrand pmsBrand = PmsBrand.builder().build();
 		List<PmsBrand> list = new ArrayList<>();
@@ -113,7 +113,7 @@ public class PmsBrandControllerTest {
 	}
 
 	@Test
-	public void testList_NoRemainderRecord_Succeed() throws UnsupportedEncodingException, Exception {
+	public void testList_NoRemainderRecordAndKeywordIsNull_Succeed() throws UnsupportedEncodingException, Exception {
 		PmsBrand pmsBrand1 = PmsBrand.builder().build();
 		PmsBrand pmsBrand2 = PmsBrand.builder().build();
 		List<PmsBrand> list = new ArrayList<>();
@@ -128,6 +128,55 @@ public class PmsBrandControllerTest {
 		when(pmsBrandService.getTotalPageDependsOnContent(2)).thenReturn(1);
 
 		mockMvc.perform(get("/brand/list").param("pageNum", "1").param("pageSize", "2"))
+				.andExpect(jsonPath("$.code").value(200)).andExpect(jsonPath("$.message").value("OK"))
+				.andExpect(jsonPath("$.data.list[0]").value(list.get(0)))
+				.andExpect(jsonPath("$.data.list[1]").value(list.get(1))).andExpect(jsonPath("$.data.pageNum").value(1))
+				.andExpect(jsonPath("$.data.pageSize").value(2)).andExpect(jsonPath("$.data.total").value(2l))
+				.andExpect(jsonPath("$.data.totalPage").value(1));
+	}
+
+	@Test
+	public void testList_HasRemainderRecordAndKeywordHasEmptyContent_Succeed()
+			throws UnsupportedEncodingException, Exception {
+		// 模拟结果的body部分显示的PmsBrand列表
+		PmsBrand pmsBrand = PmsBrand.builder().build();
+		List<PmsBrand> list = new ArrayList<>();
+		list.add(pmsBrand);
+
+		// 将得到的列表包装成Page类
+		Pageable paging = PageRequest.of(0, 2);
+		Page<PmsBrand> page = new PageImpl<>(list, paging, 1l);
+
+		// 设置Service层桩对象的返回结果
+		when(pmsBrandService.findAll(paging)).thenReturn(page);
+		when(pmsBrandService.countAll()).thenReturn(1l);
+		when(pmsBrandService.getTotalPageDependsOnContent(2)).thenReturn(1);
+
+		// 使用MockMvc对象的perform方法访问服务器输入参数；使用jsonPath方法断言结果的值
+		mockMvc.perform(get("/brand/list").param("keyword", "").param("pageNum", "1").param("pageSize", "2"))
+				.andExpect(jsonPath("$.code").value(200)).andExpect(jsonPath("$.message").value("OK"))
+				.andExpect(jsonPath("$.data.list[0]").value(list.get(0))).andExpect(jsonPath("$.data.pageNum").value(1))
+				.andExpect(jsonPath("$.data.pageSize").value(2)).andExpect(jsonPath("$.data.total").value(1l))
+				.andExpect(jsonPath("$.data.totalPage").value(1));
+	}
+
+	@Test
+	public void testList_NoRemainderRecordAndKeywordHasEmptyContent_Succeed()
+			throws UnsupportedEncodingException, Exception {
+		PmsBrand pmsBrand1 = PmsBrand.builder().build();
+		PmsBrand pmsBrand2 = PmsBrand.builder().build();
+		List<PmsBrand> list = new ArrayList<>();
+		list.add(pmsBrand1);
+		list.add(pmsBrand2);
+
+		Pageable paging = PageRequest.of(0, 2);
+		Page<PmsBrand> page = new PageImpl<>(list, paging, 1l);
+
+		when(pmsBrandService.findAll(paging)).thenReturn(page);
+		when(pmsBrandService.countAll()).thenReturn(2l);
+		when(pmsBrandService.getTotalPageDependsOnContent(2)).thenReturn(1);
+
+		mockMvc.perform(get("/brand/list").param("keyword", "").param("pageNum", "1").param("pageSize", "2"))
 				.andExpect(jsonPath("$.code").value(200)).andExpect(jsonPath("$.message").value("OK"))
 				.andExpect(jsonPath("$.data.list[0]").value(list.get(0)))
 				.andExpect(jsonPath("$.data.list[1]").value(list.get(1))).andExpect(jsonPath("$.data.pageNum").value(1))
