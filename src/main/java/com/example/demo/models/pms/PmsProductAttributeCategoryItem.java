@@ -1,28 +1,27 @@
 package com.example.demo.models.pms;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Data
-//@NoArgsConstructor
-//@Entity
+@Data
+@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class PmsProductAttributeCategoryItem {
 	// 属性数量
-	//@Column
 	private Integer attributeCount;
 
-	// 参数数量
-	//@Id
 	private Long id;
-	//@Column
+
 	private String name;
-	//@Column
+
+	// 参数数量
 	private Integer paramCount;
-	//@Column
-	private PmsProductAttribute productAttributeList;
+
+	private List<PmsProductAttribute> productAttributeList;
 
 }
