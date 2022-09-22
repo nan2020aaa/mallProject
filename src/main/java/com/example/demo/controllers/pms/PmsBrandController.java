@@ -2,6 +2,7 @@ package com.example.demo.controllers.pms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,15 +60,35 @@ public class PmsBrandController {
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list")
-	public CommonResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+	public CommonResult list(@RequestParam(required = false) String keyword, @RequestParam Integer pageNum,
+			@RequestParam Integer pageSize) {
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
-		Page<PmsBrand> pmsBrandPage = brandService.findAll(paging);
-		log.info("ページの導入完成、内容は: " + pmsBrandPage.toString() + ".");
+		if (keyword == null) {
+			Page<PmsBrand> pmsBrandPage = brandService.findAll(paging);
+			log.info("ページの導入完成、内容は: " + pmsBrandPage.toString() + ".");
 
-		CommonPage commonPage = CommonPage.builder().list(pmsBrandPage.toList()).pageNum(pageNum).pageSize(pageSize)
-				.total(brandService.countAll()).totalPage(brandService.getTotalPageDependsOnContent(pageSize)).build();
-		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
+			CommonPage commonPage = CommonPage.builder().list(pmsBrandPage.toList()).pageNum(pageNum).pageSize(pageSize)
+					.total(brandService.countAll()).totalPage(brandService.getTotalPageDependsOnContent(pageSize))
+					.build();
+			return CommonResult.builder().code(200).data(commonPage).message("OK").build();
+		} else if (keyword.equals("")) {
+			Page<PmsBrand> pmsBrandPage = brandService.findAll(paging);
+			log.info("ページの導入完成、内容は: " + pmsBrandPage.toString() + ".");
+
+			CommonPage commonPage = CommonPage.builder().list(pmsBrandPage.toList()).pageNum(pageNum).pageSize(pageSize)
+					.total(brandService.countAll()).totalPage(brandService.getTotalPageDependsOnContent(pageSize))
+					.build();
+			return CommonResult.builder().code(200).data(commonPage).message("OK").build();
+		} else {
+			Page<PmsBrand> pmsBrandPage = brandService.findByName(keyword, paging);
+			log.info("ページの導入完成、内容は: " + pmsBrandPage.toString() + ".");
+
+			CommonPage commonPage = CommonPage.builder().list(pmsBrandPage.toList()).pageNum(pageNum).pageSize(pageSize)
+					.total(brandService.countAll()).totalPage(brandService.getTotalPageDependsOnContent(pageSize))
+					.build();
+			return CommonResult.builder().code(200).data(commonPage).message("OK").build();
+		}
 	}
 }
