@@ -1,7 +1,11 @@
 package com.example.demo.controllers.pms;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -49,16 +53,41 @@ public class PmsProductController {
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list")
-	public CommonResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+	public CommonResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize,@RequestParam(required=false) Long brandId,
+			@RequestParam(required=false) String keyword, @RequestParam(required=false) Long productCategoryId, @RequestParam(required=false) String productSn,
+		@RequestParam(required=false) Integer publishStatus, @RequestParam(required=false) Integer verifyStatus) {
+	
+       
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
-		Page<PmsProduct> pmsProductPage = productService.findAll(paging);
-		log.info("ページの導入完成、内容は: " + pmsProductPage.toString() + ".");
+		PmsProduct product =new PmsProduct();
+		product.setBrandId(brandId);
+		product.setName(keyword);
+		product.setProductCategoryId(productCategoryId);
+		product.setProductSn(productSn);
+		product.setPublishStatus(verifyStatus);
+		product.setVerifyStatus(verifyStatus);
+		
+		ExampleMatcher matcher =ExampleMatcher.matching()
+				.withMatcher("name", match->match.ignoreCase().contains());
+		
+		Example<PmsProduct> example=Example.of(product,matcher);
+		
+		Page<PmsProduct> products=productService.findAll(example,paging);
+		products.forEach(System.out::println);
+		
+		// if(brandId==null&&keyword==null&&productCategoryId==null&&productSn==null&&publishStatus==null&&verifyStatus==null)
+		// {
 
-		CommonPage commonPage = CommonPage.builder().list(pmsProductPage.toList()).pageNum(pageNum).pageSize(pageSize)
+		//Page<PmsProduct> pmsProductPage = productService.findAll(paging);
+		//log.info("ページの導入完成、内容は: " + pmsProductPage.toString() + ".");
+
+		CommonPage commonPage = CommonPage.builder().list(products.toList()).pageNum(pageNum).pageSize(pageSize)
 				.total(productService.countAll()).totalPage(productService.getTotalPageDependsOnContent(pageSize))
 				.build();
+
 		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
+
 	}
 }
