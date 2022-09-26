@@ -41,7 +41,7 @@ public class PmsProductService {
 
 	public Page<PmsProduct> findAll(Example<PmsProduct> example, Pageable paging) {
 		log.info("findAllメソッドを呼び出した。");
-		return repository.findAll(paging);
+		return repository.findAll(example,paging);
 	}
 
 

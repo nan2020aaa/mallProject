@@ -69,22 +69,25 @@ public class PmsProductController {
 		product.setPublishStatus(verifyStatus);
 		product.setVerifyStatus(verifyStatus);
 		
+		//用example matching的方法查询，大小写自由，包含关系
 		ExampleMatcher matcher =ExampleMatcher.matching()
 				.withMatcher("name", match->match.ignoreCase().contains());
 		
 		Example<PmsProduct> example=Example.of(product,matcher);
 		
+		//查找并返回页数
 		Page<PmsProduct> products=productService.findAll(example,paging);
 		products.forEach(System.out::println);
 		
-		// if(brandId==null&&keyword==null&&productCategoryId==null&&productSn==null&&publishStatus==null&&verifyStatus==null)
-		// {
+		Long count = 0L;
+		for(PmsProduct e:products){
+			count++;
+		}
+		 
 
-		//Page<PmsProduct> pmsProductPage = productService.findAll(paging);
-		//log.info("ページの導入完成、内容は: " + pmsProductPage.toString() + ".");
 
 		CommonPage commonPage = CommonPage.builder().list(products.toList()).pageNum(pageNum).pageSize(pageSize)
-				.total(productService.countAll()).totalPage(productService.getTotalPageDependsOnContent(pageSize))
+				.total(count).totalPage(productService.getTotalPageDependsOnContent(pageSize))
 				.build();
 
 		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
