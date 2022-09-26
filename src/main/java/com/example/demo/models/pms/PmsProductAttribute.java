@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 public class PmsProductAttribute {
-	// 分类筛选样式：1->普通；1->颜色
+	// 分类筛选样式：0->普通；1->颜色
 	@Column
 	private Integer filterType;
 
