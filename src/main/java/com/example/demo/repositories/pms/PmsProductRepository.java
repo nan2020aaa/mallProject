@@ -1,5 +1,7 @@
 package com.example.demo.repositories.pms;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,4 +20,10 @@ public interface PmsProductRepository extends JpaRepository<PmsProduct, Long> {
 	PmsProduct findByPublishStatus(Integer publishStatus);
 
 	PmsProduct findByVerifyStatus(Integer verifyStatus);
+
+	//Page<PmsProduct> findByBrandId(Pageable paging);
+
+	
+
+	
 }

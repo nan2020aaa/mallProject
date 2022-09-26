@@ -1,13 +1,10 @@
 package com.example.demo.models.pms;
 
 import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,7 +29,6 @@ public class PmsProductCategoryWithChildrenItem {
 	private Long id;
 
 	private String keywords;
-
 	// 分类级别：0->1级；1->2级
 	private Integer level;
 
@@ -45,9 +41,7 @@ public class PmsProductCategoryWithChildrenItem {
 	private Long parentId;
 
 	private Integer productCount;
-
 	private String productUnit;
-
 	// 显示状态：0->不显示；1->显示
 	private Integer showStatus;
 

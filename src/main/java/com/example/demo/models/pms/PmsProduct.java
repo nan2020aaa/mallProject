@@ -100,6 +100,7 @@ public class PmsProduct {
 	@Column
 	private Long productAttributeCategoryId;
 
+	@Column
 	private Long productCategoryId;
 
 	@Column
