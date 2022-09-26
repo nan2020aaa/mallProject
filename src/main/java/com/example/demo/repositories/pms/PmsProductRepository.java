@@ -1,6 +1,7 @@
 package com.example.demo.repositories.pms;
 
 import org.springframework.data.domain.Example;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,17 +24,16 @@ public interface PmsProductRepository extends JpaRepository<PmsProduct, Long> {
 	
 	Page<PmsProduct>findByVerifyStatus(@Param(value = "verifyStatus")Integer verifyStatus,Pageable paging);
 
-//	Long countByProductCategoryId(Long productCategoryId);
-	
-//	PmsProduct findByBrandId(Long brandId);
-//
-//	PmsProduct findByKeywords(String keyword);
-//
-//	PmsProduct findByProductCategoryId(Long productCategoryId);
-//
-//	PmsProduct findByProductSn(String productSn);
-//
-//	PmsProduct findByPublishStatus(Integer publishStatus);
-//
-//	PmsProduct findByVerifyStatus(Integer verifyStatus);
+	PmsProduct findByKeywords(String keyword);
+
+	PmsProduct findByProductCategoryId(Long productCategoryId);
+
+	PmsProduct findByProductSn(String productSn);
+
+	PmsProduct findByPublishStatus(Integer publishStatus);
+
+	PmsProduct findByVerifyStatus(Integer verifyStatus);
+
+	//Page<PmsProduct> findByBrandId(Pageable paging);
+
 }

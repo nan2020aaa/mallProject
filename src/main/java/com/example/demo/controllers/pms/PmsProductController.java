@@ -1,5 +1,7 @@
 package com.example.demo.controllers.pms;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -38,7 +40,9 @@ public class PmsProductController {
 		log.info("PmsProductController, /create, パラメータを受け取った：{}", param);
 
 		PmsProduct data = PmsProduct.builder().build();
+		log.info("paramの内容は：" + param + ".");
 		BeanUtils.copyProperties(param, data);
+		log.info("dataの内容は：" + data + ".");
 		log.info("BeanCopy完成：{}", data);
 
 		if (productService.create(data)) {
@@ -51,11 +55,12 @@ public class PmsProductController {
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list")
-	public CommonResult list(@RequestParam(required = false) String keyword,
-			@RequestParam(required = false) Long brandId, @RequestParam(required = false) Long productCategoryId,
-			@RequestParam(required = false) String productSn, @RequestParam(required = false) Integer publishStatus,
-			@RequestParam(required = false) Integer verifyStatus, @RequestParam Integer pageNum,
-			@RequestParam Integer pageSize) {
+
+	public CommonResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize,@RequestParam(required=false) Long brandId,
+			@RequestParam(required=false) String keyword, @RequestParam(required=false) Long productCategoryId, @RequestParam(required=false) String productSn,
+		@RequestParam(required=false) Integer publishStatus, @RequestParam(required=false) Integer verifyStatus) {
+	
+       
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
@@ -67,7 +72,7 @@ public class PmsProductController {
 		product.setVerifyStatus(verifyStatus);
 		product.setPublishStatus(publishStatus);
 
-		//
+		
 		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("name", match -> match.ignoreCase().contains());
 
 		Example<PmsProduct> example = Example.of(product, matcher);
@@ -84,34 +89,9 @@ public class PmsProductController {
 		CommonPage commonPage = CommonPage.builder().list(products.toList()).pageNum(pageNum).pageSize(pageSize)
 				.total(count).totalPage(productService.getTotalPageDependsOnContent(pageSize))
 				.build();
-		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
-	}
 
-//		if (keyword == null && brandId == null && productCategoryId == null && productSn == null
-//				&& publishStatus == null && verifyStatus == null) {
-//			Page<PmsProduct> pmsProductPage = productService.findAll(paging);
-//			log.info("ページの導入完成、内容は: " + pmsProductPage.toString() + ".");
-//
-//			CommonPage commonPage = CommonPage.builder().list(pmsProductPage.toList()).pageNum(pageNum)
-//					.pageSize(pageSize).total(productService.countAll())
-//					.totalPage(productService.getTotalPageDependsOnContent(pageSize)).build();
-//			return CommonResult.builder().code(200).data(commonPage).message("OK").build();
-//		}else {
-//			Page<PmsProduct> pmsProductKeywords = productService.findByKeywords(keyword, paging);
-//			Page<PmsProduct> pmsProductBrandId = productService.findByBrandId(brandId, paging);
-//			Page<PmsProduct> pmsProductProductCategoryId = productService.findByProductCategoryId(productCategoryId,
-//					paging);
-//			Page<PmsProduct> pmsProductProductSn = productService.findByProductSn(productSn, paging);
-//			Page<PmsProduct> pmsProductPublishStatus = productService.findByPublishStatus(publishStatus, paging);
-//			Page<PmsProduct> pmsProductVerifyStatus = productService.findByVerifyStatus(verifyStatus, paging);
-//			log.info("ページの導入完成、内容は: " + pmsProductKeywords.toString() + ".");
-//
-//			CommonPage commonPage = CommonPage.builder().list(pmsProductKeywords.toList())
-//					.list(pmsProductBrandId.toList()).list(pmsProductProductCategoryId.toList())
-//					.list(pmsProductProductSn.toList()).list(pmsProductPublishStatus.toList())
-//					.list(pmsProductVerifyStatus.toList()).pageNum(pageNum).pageSize(pageSize)
-//					.total(productService.countId(productCategoryId)).build();
-//			return CommonResult.builder().code(200).data(commonPage).message("OK").build();
-//		}
+		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
+
+	}
 
 }

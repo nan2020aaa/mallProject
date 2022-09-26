@@ -1,7 +1,5 @@
 package com.example.demo.services.pms;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -50,29 +48,10 @@ public class PmsProductService {
 		return repository.findAll(example, paging);
 	}
 
-//	public Page<PmsProduct> findByKeywords(String keyword, Pageable paging) {
-//		return repository.findByKeywords(keyword, paging);
+
+
+//	public Page<PmsProduct> findByBrandId(Pageable paging) {
+//		
+//		return repository.findByBrandId(paging);
 //	}
-//
-//	public Page<PmsProduct> findByBrandId(Long brandId, Pageable paging) {
-//		return repository.findByBrandId(brandId, paging);
-//	}
-//
-//	public Page<PmsProduct> findByProductCategoryId(Long productCategoryId, Pageable paging) {
-//		return repository.findByProductCategoryId(productCategoryId, paging);
-//	}
-//
-//	public Page<PmsProduct> findByProductSn(String productSn, Pageable paging) {
-//		return repository.findByProductSn(productSn, paging);
-//	}
-//
-//	public Page<PmsProduct> findByPublishStatus(Integer publishStatus, Pageable paging) {
-//		return repository.findByPublishStatus(publishStatus, paging);
-//	}
-//
-//	public Page<PmsProduct> findByVerifyStatus(Integer verifyStatus, Pageable paging) {
-//		return repository.findByVerifyStatus(verifyStatus, paging);
-//	}
-	
-	
 }
