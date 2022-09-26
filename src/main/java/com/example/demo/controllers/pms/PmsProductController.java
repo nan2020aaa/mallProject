@@ -2,6 +2,8 @@ package com.example.demo.controllers.pms;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -49,16 +51,67 @@ public class PmsProductController {
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list")
-	public CommonResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+	public CommonResult list(@RequestParam(required = false) String keyword,
+			@RequestParam(required = false) Long brandId, @RequestParam(required = false) Long productCategoryId,
+			@RequestParam(required = false) String productSn, @RequestParam(required = false) Integer publishStatus,
+			@RequestParam(required = false) Integer verifyStatus, @RequestParam Integer pageNum,
+			@RequestParam Integer pageSize) {
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
-		Page<PmsProduct> pmsProductPage = productService.findAll(paging);
-		log.info("ページの導入完成、内容は: " + pmsProductPage.toString() + ".");
+		PmsProduct product = new PmsProduct();
+		product.setName(keyword);
+		product.setBrandId(brandId);
+		product.setProductCategoryId(productCategoryId);
+		product.setProductSn(productSn);
+		product.setVerifyStatus(verifyStatus);
+		product.setPublishStatus(publishStatus);
 
-		CommonPage commonPage = CommonPage.builder().list(pmsProductPage.toList()).pageNum(pageNum).pageSize(pageSize)
-				.total(productService.countAll()).totalPage(productService.getTotalPageDependsOnContent(pageSize))
+		//
+		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("name", match -> match.ignoreCase().contains());
+
+		Example<PmsProduct> example = Example.of(product, matcher);
+
+		Page<PmsProduct> products = productService.findAll(example, paging);
+		products.forEach(System.out::println);
+		log.info("ページの導入完成、内容は: " + products.toList().toString() + ".");
+		
+		Long count = 0L;
+		for(PmsProduct e : products) {
+			count ++;
+		}
+
+		CommonPage commonPage = CommonPage.builder().list(products.toList()).pageNum(pageNum).pageSize(pageSize)
+				.total(count).totalPage(productService.getTotalPageDependsOnContent(pageSize))
 				.build();
 		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
 	}
+
+//		if (keyword == null && brandId == null && productCategoryId == null && productSn == null
+//				&& publishStatus == null && verifyStatus == null) {
+//			Page<PmsProduct> pmsProductPage = productService.findAll(paging);
+//			log.info("ページの導入完成、内容は: " + pmsProductPage.toString() + ".");
+//
+//			CommonPage commonPage = CommonPage.builder().list(pmsProductPage.toList()).pageNum(pageNum)
+//					.pageSize(pageSize).total(productService.countAll())
+//					.totalPage(productService.getTotalPageDependsOnContent(pageSize)).build();
+//			return CommonResult.builder().code(200).data(commonPage).message("OK").build();
+//		}else {
+//			Page<PmsProduct> pmsProductKeywords = productService.findByKeywords(keyword, paging);
+//			Page<PmsProduct> pmsProductBrandId = productService.findByBrandId(brandId, paging);
+//			Page<PmsProduct> pmsProductProductCategoryId = productService.findByProductCategoryId(productCategoryId,
+//					paging);
+//			Page<PmsProduct> pmsProductProductSn = productService.findByProductSn(productSn, paging);
+//			Page<PmsProduct> pmsProductPublishStatus = productService.findByPublishStatus(publishStatus, paging);
+//			Page<PmsProduct> pmsProductVerifyStatus = productService.findByVerifyStatus(verifyStatus, paging);
+//			log.info("ページの導入完成、内容は: " + pmsProductKeywords.toString() + ".");
+//
+//			CommonPage commonPage = CommonPage.builder().list(pmsProductKeywords.toList())
+//					.list(pmsProductBrandId.toList()).list(pmsProductProductCategoryId.toList())
+//					.list(pmsProductProductSn.toList()).list(pmsProductPublishStatus.toList())
+//					.list(pmsProductVerifyStatus.toList()).pageNum(pageNum).pageSize(pageSize)
+//					.total(productService.countId(productCategoryId)).build();
+//			return CommonResult.builder().code(200).data(commonPage).message("OK").build();
+//		}
+
 }
