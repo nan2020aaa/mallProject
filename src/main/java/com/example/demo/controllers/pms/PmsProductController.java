@@ -40,7 +40,9 @@ public class PmsProductController {
 		log.info("PmsProductController, /create, パラメータを受け取った：{}", param);
 
 		PmsProduct data = PmsProduct.builder().build();
+		log.info("paramの内容は：" + param + ".");
 		BeanUtils.copyProperties(param, data);
+		log.info("dataの内容は：" + data + ".");
 		log.info("BeanCopy完成：{}", data);
 
 		if (productService.create(data)) {
