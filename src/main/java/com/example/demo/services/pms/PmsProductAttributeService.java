@@ -1,5 +1,7 @@
 package com.example.demo.services.pms;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,9 @@ public class PmsProductAttributeService {
 	public boolean create(PmsProductAttribute pmsProductAttribute) {
 		repository.save(pmsProductAttribute);
 		return true;
+	}
+
+	public List<PmsProductAttribute> findAll() {
+		return repository.findAll();
 	}
 }

@@ -1,5 +1,7 @@
 package com.example.demo.services.pms;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,5 +41,9 @@ public class PmsProductAttributeCategoryService {
 			log.info("getTotalPageメソッドを呼び出した、要求されたページは内容で満たされていない。");
 			return (int) ((countAll() / pageSize) + 1);
 		}
+	}
+
+	public List<PmsProductAttributeCategory> findAll() {
+		return repository.findAll();
 	}
 }
