@@ -84,4 +84,11 @@ public class PmsProductAttributeController {
 			return CommonResult.builder().code(200).data(commonPage2).message("OK").build();
 		}
 	}
+
+	@ResponseBody // 返回值为 ResponseBody 的内容
+	@PostMapping("/delete")
+	public CommonResult deleteById(@RequestParam List<Long> ids) {
+		productAttributeService.delete(ids);
+		return CommonResult.builder().code(200).data(null).message("OK").build();
+	}
 }
