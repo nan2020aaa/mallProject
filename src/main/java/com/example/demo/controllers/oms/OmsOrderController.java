@@ -71,7 +71,7 @@ public class OmsOrderController {
 		order.setSourceType(sourceType);
 		order.setCreateTime(createTime);
 		
-		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("name", match -> match.ignoreCase().contains());
+		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("orderSn", match -> match.ignoreCase().contains());
 		
 		Example<OmsOrder> example = Example.of(order, matcher);
 		
