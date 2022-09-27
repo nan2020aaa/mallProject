@@ -42,4 +42,8 @@ public class PmsProductAttributeService {
 			return (int) ((countByType(type) / pageSize) + 1);
 		}
 	}
+	
+	public void delete(List<Long> ids) {
+		repository.deleteAllByIdInBatch(ids);;
+	}
 }

@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -87,5 +88,12 @@ public class PmsProductAttributeCategoryController {
 			list.add(productAttributeCategoryItem);
 		});
 		return CommonResult.builder().code(200).data(list).message("OK").build();
+	}
+
+	@ResponseBody // 返回值为 ResponseBody 的内容
+	@GetMapping("/delete/{id}")
+	public CommonResult deleteById(@PathVariable Long id) {
+		productAttributeCategoryService.deleteById(id);
+		return CommonResult.builder().code(200).data(null).message("OK").build();
 	}
 }
