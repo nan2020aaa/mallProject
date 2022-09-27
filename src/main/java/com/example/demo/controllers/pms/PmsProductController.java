@@ -55,44 +55,40 @@ public class PmsProductController {
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list")
-	public CommonResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize,@RequestParam(required=false) Long brandId,
-			@RequestParam(required=false) String keyword, @RequestParam(required=false) Long productCategoryId, @RequestParam(required=false) String productSn,
-		@RequestParam(required=false) Integer publishStatus, @RequestParam(required=false) Integer verifyStatus) {
-	
-       
+	public CommonResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize,
+			@RequestParam(required = false) Long brandId, @RequestParam(required = false) String keyword,
+			@RequestParam(required = false) Long productCategoryId, @RequestParam(required = false) String productSn,
+			@RequestParam(required = false) Integer publishStatus,
+			@RequestParam(required = false) Integer verifyStatus) {
+
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
-		PmsProduct product =new PmsProduct();
+		PmsProduct product = new PmsProduct();
 		product.setBrandId(brandId);
 		product.setName(keyword);
 		product.setProductCategoryId(productCategoryId);
 		product.setProductSn(productSn);
 		product.setPublishStatus(verifyStatus);
 		product.setVerifyStatus(verifyStatus);
-		
-		//用example matching的方法查询，大小写自由，包含关系
-		ExampleMatcher matcher =ExampleMatcher.matching()
-				.withMatcher("name", match->match.ignoreCase().contains());
-		
-		Example<PmsProduct> example=Example.of(product,matcher);
-		
-		//查找并返回页数
-		Page<PmsProduct> products=productService.findAll(example,paging);
+
+		// 用example matching的方法查询，大小写自由，包含关系
+		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("name", match -> match.ignoreCase().contains());
+
+		Example<PmsProduct> example = Example.of(product, matcher);
+
+		// 查找并返回页数
+		Page<PmsProduct> products = productService.findAll(example, paging);
 		products.forEach(System.out::println);
-		
+
 		Long count = 0L;
-		for(PmsProduct e:products){
+		for (PmsProduct e : products) {
 			count++;
 		}
-		 
-
 
 		CommonPage commonPage = CommonPage.builder().list(products.toList()).pageNum(pageNum).pageSize(pageSize)
-				.total(count).totalPage(productService.getTotalPageDependsOnContent(pageSize))
-				.build();
+				.total(count).totalPage(productService.getTotalPageDependsOnContent(pageSize)).build();
 
 		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
-
 	}
 }

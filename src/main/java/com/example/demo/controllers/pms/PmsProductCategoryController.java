@@ -90,4 +90,11 @@ public class PmsProductCategoryController {
 				.total(productCategoryService.countParentId(parentId)).build();
 		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
 	}
+
+	@ResponseBody // 返回值为 ResponseBody 的内容
+	@PostMapping("/delete/{id}")
+	public CommonResult deleteById(@PathVariable Long id) {
+		productCategoryService.deleteById(id);
+		return CommonResult.builder().code(200).data(null).message("OK").build();
+	}
 }

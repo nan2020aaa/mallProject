@@ -75,4 +75,8 @@ public class PmsProductCategoryService {
 			e.setChildren(repository.findByParentId(e.getId()));
 		}
 	}
+	
+	public void deleteById(Long id) {
+		repository.deleteById(id);
+	}
 }
