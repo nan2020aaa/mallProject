@@ -99,4 +99,14 @@ public class PmsBrandController {
 		brandService.deleteById(id);
 		return CommonResult.builder().code(200).data(null).message("OK").build();
 	}
+
+	@ResponseBody // 返回值为 ResponseBody 的内容
+	@PostMapping("/update/{id}")
+	public CommonResult updateById(@PathVariable Long id, @RequestBody PmsBrandParam pmsBrandParam) {
+		PmsBrand data = PmsBrand.builder().build();
+		BeanUtils.copyProperties(pmsBrandParam, data);
+		data.setId(id);
+		brandService.updateById(data);
+		return CommonResult.builder().code(200).data(null).message("OK").build();
+	}
 }

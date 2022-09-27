@@ -46,4 +46,8 @@ public class PmsProductAttributeCategoryService {
 	public List<PmsProductAttributeCategory> findAll() {
 		return repository.findAll();
 	}
+
+	public void deleteById(Long id) {
+		repository.deleteById(id);
+	}
 }
