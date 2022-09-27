@@ -54,4 +54,8 @@ public class PmsBrandService {
 		log.info("findAllメソッドを呼び出した。");
 		return repository.findByName(name, paging);
 	}
+	
+	public void deleteById(Long id) {
+		repository.deleteById(id);
+	}
 }

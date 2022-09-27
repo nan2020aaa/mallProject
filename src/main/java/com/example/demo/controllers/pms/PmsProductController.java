@@ -71,8 +71,6 @@ public class PmsProductController {
 		product.setProductSn(productSn);
 		product.setVerifyStatus(verifyStatus);
 		product.setPublishStatus(publishStatus);
-
-		
 		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("name", match -> match.ignoreCase().contains());
 
 		Example<PmsProduct> example = Example.of(product, matcher);
@@ -87,11 +85,9 @@ public class PmsProductController {
 		}
 
 		CommonPage commonPage = CommonPage.builder().list(products.toList()).pageNum(pageNum).pageSize(pageSize)
-				.total(count).totalPage(productService.getTotalPageDependsOnContent(pageSize))
-				.build();
+				.total(count).totalPage(productService.getTotalPageDependsOnContent(pageSize)).build();
 
 		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
-
 	}
 
 }
