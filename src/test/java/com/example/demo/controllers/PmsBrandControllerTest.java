@@ -99,8 +99,9 @@ public class PmsBrandControllerTest {
 		Pageable paging = PageRequest.of(0, 2);
 		Page<PmsBrand> page = new PageImpl<>(list, paging, 1l);
 
+		
 		// 设置Service层桩对象的返回结果
-		when(pmsBrandService.findAll(paging)).thenReturn(page);
+//		when(pmsBrandService.findAll(example,paging)).thenReturn(page);
 		when(pmsBrandService.countAll()).thenReturn(1l);
 		when(pmsBrandService.getTotalPageDependsOnContent(2)).thenReturn(1);
 
@@ -123,7 +124,7 @@ public class PmsBrandControllerTest {
 		Pageable paging = PageRequest.of(0, 2);
 		Page<PmsBrand> page = new PageImpl<>(list, paging, 1l);
 
-		when(pmsBrandService.findAll(paging)).thenReturn(page);
+//		when(pmsBrandService.findAll(paging)).thenReturn(page);
 		when(pmsBrandService.countAll()).thenReturn(2l);
 		when(pmsBrandService.getTotalPageDependsOnContent(2)).thenReturn(1);
 
@@ -148,7 +149,7 @@ public class PmsBrandControllerTest {
 		Page<PmsBrand> page = new PageImpl<>(list, paging, 1l);
 
 		// 设置Service层桩对象的返回结果
-		when(pmsBrandService.findAll(paging)).thenReturn(page);
+//		when(pmsBrandService.findAll(paging)).thenReturn(page);
 		when(pmsBrandService.countAll()).thenReturn(1l);
 		when(pmsBrandService.getTotalPageDependsOnContent(2)).thenReturn(1);
 
@@ -172,7 +173,7 @@ public class PmsBrandControllerTest {
 		Pageable paging = PageRequest.of(0, 2);
 		Page<PmsBrand> page = new PageImpl<>(list, paging, 1l);
 
-		when(pmsBrandService.findAll(paging)).thenReturn(page);
+//		when(pmsBrandService.findAll(paging)).thenReturn(page);
 		when(pmsBrandService.countAll()).thenReturn(2l);
 		when(pmsBrandService.getTotalPageDependsOnContent(2)).thenReturn(1);
 

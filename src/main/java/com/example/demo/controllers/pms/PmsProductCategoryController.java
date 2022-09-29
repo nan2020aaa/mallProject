@@ -97,4 +97,15 @@ public class PmsProductCategoryController {
 		productCategoryService.deleteById(id);
 		return CommonResult.builder().code(200).data(null).message("OK").build();
 	}
+	
+	@ResponseBody // 返回值为 ResponseBody 的内容
+	@PostMapping("/update/{id}")
+	public CommonResult updateById(@PathVariable Long id,@RequestBody PmsProductCategoryParam productCategoryParam) {
+		PmsProductCategory productCategory = new PmsProductCategory();
+		productCategory.setId(id);
+		BeanUtils.copyProperties(productCategoryParam, productCategory);
+		productCategoryService.setLevel(productCategory);
+		productCategoryService.update(productCategory);
+		return CommonResult.builder().code(200).data(null).message("OK").build();
+	}
 }

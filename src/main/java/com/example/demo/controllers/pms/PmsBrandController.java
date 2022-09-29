@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.models.pms.PmsBrand;
+import com.example.demo.models.pms.PmsProduct;
 import com.example.demo.models.request.PmsBrandParam;
 import com.example.demo.models.response.CommonPage;
 import com.example.demo.models.response.CommonResult;
@@ -66,31 +69,26 @@ public class PmsBrandController {
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
-		if (keyword == null) {
-			Page<PmsBrand> pmsBrandPage = brandService.findAll(paging);
-			log.info("ページの導入完成、内容は: " + pmsBrandPage.toString() + ".");
+		PmsBrand brand = new PmsBrand();
+		brand.setName(keyword);
 
-			CommonPage commonPage = CommonPage.builder().list(pmsBrandPage.toList()).pageNum(pageNum).pageSize(pageSize)
-					.total(brandService.countAll()).totalPage(brandService.getTotalPageDependsOnContent(pageSize))
-					.build();
-			return CommonResult.builder().code(200).data(commonPage).message("OK").build();
-		} else if (keyword.equals("")) {
-			Page<PmsBrand> pmsBrandPage = brandService.findAll(paging);
-			log.info("ページの導入完成、内容は: " + pmsBrandPage.toString() + ".");
+		// 用example matching的方法查询，大小写自由，包含关系
+		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("name", match -> match.ignoreCase().contains());
 
-			CommonPage commonPage = CommonPage.builder().list(pmsBrandPage.toList()).pageNum(pageNum).pageSize(pageSize)
-					.total(brandService.countAll()).totalPage(brandService.getTotalPageDependsOnContent(pageSize))
-					.build();
-			return CommonResult.builder().code(200).data(commonPage).message("OK").build();
-		} else {
-			Page<PmsBrand> pmsBrandPage = brandService.findByName(keyword, paging);
-			log.info("ページの導入完成、内容は: " + pmsBrandPage.toString() + ".");
+		Example<PmsBrand> example = Example.of(brand, matcher);
+		// 查找并返回页数
+		Page<PmsBrand> brands = brandService.findAll(example, paging);
+		brands.forEach(System.out::println);
+		log.info("ページの導入完成、内容は: " + brands.toList().toString() + ".");
 
-			CommonPage commonPage = CommonPage.builder().list(pmsBrandPage.toList()).pageNum(pageNum).pageSize(pageSize)
-					.total(brandService.countAll()).totalPage(brandService.getTotalPageDependsOnContent(pageSize))
-					.build();
-			return CommonResult.builder().code(200).data(commonPage).message("OK").build();
+		Long count = 0L;
+		for (PmsBrand e : brands) {
+			count++;
 		}
+
+		CommonPage commonPage = CommonPage.builder().list(brands.toList()).pageNum(pageNum).pageSize(pageSize)
+				.total(brandService.countAll()).totalPage(brandService.getTotalPageDependsOnContent(pageSize)).build();
+		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
 	}
 
 	@ResponseBody // 返回值为 ResponseBody 的内容

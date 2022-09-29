@@ -79,4 +79,8 @@ public class PmsProductCategoryService {
 	public void deleteById(Long id) {
 		repository.deleteById(id);
 	}
+	
+	public void update(PmsProductCategory productCategory) {
+		this.create(productCategory);
+	}
 }

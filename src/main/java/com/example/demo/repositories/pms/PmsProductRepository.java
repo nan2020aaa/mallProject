@@ -12,28 +12,27 @@ import com.example.demo.models.pms.PmsProduct;
 
 @Repository
 public interface PmsProductRepository extends JpaRepository<PmsProduct, Long> {
-	Page<PmsProduct>findByBrandId(@Param(value = "brandId")Long brandId,Pageable paging);
-	
-	Page<PmsProduct>findByKeywords(@Param(value = "keyword")String keyword,Pageable paging);
-	
-	Page<PmsProduct>findByProductCategoryId(@Param(value = "productCategoryId")Long productCategoryId,Pageable paging);
-	
-	Page<PmsProduct>findByProductSn(@Param(value = "productSn")String productSn,Pageable paging);
-	
-	Page<PmsProduct>findByPublishStatus(@Param(value = "publishStatus")Integer publishStatus,Pageable paging);
-	
-	Page<PmsProduct>findByVerifyStatus(@Param(value = "verifyStatus")Integer verifyStatus,Pageable paging);
+	Page<PmsProduct> findByBrandId(@Param(value = "brandId") Long brandId, Pageable paging);
 
-	PmsProduct findByKeywords(String keyword);
+	Page<PmsProduct> findByKeywords(@Param(value = "keyword") String keyword, Pageable paging);
 
-	PmsProduct findByProductCategoryId(Long productCategoryId);
+	Page<PmsProduct> findByProductCategoryId(@Param(value = "productCategoryId") Long productCategoryId,
+			Pageable paging);
 
-	PmsProduct findByProductSn(String productSn);
+	Page<PmsProduct> findByProductSn(@Param(value = "productSn") String productSn, Pageable paging);
 
-	PmsProduct findByPublishStatus(Integer publishStatus);
+	Page<PmsProduct> findByPublishStatus(@Param(value = "publishStatus") Integer publishStatus, Pageable paging);
 
-	PmsProduct findByVerifyStatus(Integer verifyStatus);
+	Page<PmsProduct> findByVerifyStatus(@Param(value = "verifyStatus") Integer verifyStatus, Pageable paging);
 
-	//Page<PmsProduct> findByBrandId(Pageable paging);
+//	PmsProduct findByKeywords(String keyword);
+//
+//	PmsProduct findByProductCategoryId(Long productCategoryId);
+//
+//	PmsProduct findByProductSn(String productSn);
+//
+//	PmsProduct findByPublishStatus(Integer publishStatus);
+//
+//	PmsProduct findByVerifyStatus(Integer verifyStatus);
 
 }
