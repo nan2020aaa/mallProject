@@ -55,7 +55,6 @@ public class PmsProductCategoryController {
 	@GetMapping("/list/withChildren")
 	public CommonResult listWithChildren() {
 		List<PmsProductCategoryWithChildrenItem> dataList = new ArrayList<>();
-		log.info("------------：{}", dataList);
 		List<PmsProductCategory> categoryList = productCategoryService.findAll();
 		log.info("属性を引き出す：{}", categoryList);
 		categoryList.forEach((e) -> {
@@ -69,8 +68,8 @@ public class PmsProductCategoryController {
 
 		dataList.forEach((e) -> {
 			productCategoryService.setChildrenItem(e);
-			log.info("secondクラス分類：{}", dataList);
 		});
+		log.info("secondクラス分類：{}", dataList);
 
 		return CommonResult.builder().code(200).data(dataList).message("OK").build();
 	}
@@ -100,8 +99,7 @@ public class PmsProductCategoryController {
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@PostMapping("/update/{id}")
 	public CommonResult updateById(@PathVariable Long id, @RequestBody PmsProductCategoryParam productCategoryParam) {
-		PmsProductCategory productCategory = PmsProductCategory.builder().build();
-		productCategory.setId(id);
+		PmsProductCategory productCategory = PmsProductCategory.builder().id(id).build();
 		BeanUtils.copyProperties(productCategoryParam, productCategory);
 		productCategoryService.setLevel(productCategory);
 		productCategoryService.update(productCategory);

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -96,11 +97,12 @@ public class PmsBrandControllerTest {
 		list.add(pmsBrand);
 
 		// 将得到的列表包装成Page类
+		Example<PmsBrand> example = Example.of(pmsBrand);
 		Pageable paging = PageRequest.of(0, 2);
 		Page<PmsBrand> page = new PageImpl<>(list, paging, 1l);
 
 		// 设置Service层桩对象的返回结果
-		when(pmsBrandService.findAll(paging)).thenReturn(page);
+		when(pmsBrandService.findAll(example,paging)).thenReturn(page);
 		when(pmsBrandService.countAll()).thenReturn(1l);
 		when(pmsBrandService.getTotalPageDependsOnContent(2)).thenReturn(1);
 

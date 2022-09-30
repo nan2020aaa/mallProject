@@ -41,6 +41,10 @@ public class PmsProductCategoryService {
 	public Page<PmsProductCategory> findByParentId(Long parentId, Pageable paging) {
 		return repository.findByParentId(parentId, paging);
 	}
+	
+	public List<PmsProductCategory> findByParentId(Long parentId) {
+		return repository.findByParentId(parentId);
+	}
 
 	public boolean create(PmsProductCategory data) {
 		repository.save(data);

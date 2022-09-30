@@ -87,21 +87,22 @@ public class PmsProductCategoryControllerTest {
 	@Test
 	public void testListWithChildren_Succeed() throws Exception {
 		// 模拟结果的body部分显示的PmsProductCategory列表
-		PmsProductCategory pmsProductCategory1 = PmsProductCategory.builder().id(1l).parentId(0l).build();
+		PmsProductCategory pmsProductCategory1 = PmsProductCategory.builder().id(1l).parentId(0l).level(0).build();
 		List<PmsProductCategory> dataList = new ArrayList<>();
 		dataList.add(pmsProductCategory1);
 
-		PmsProductCategory pmsProductCategory2 = PmsProductCategory.builder().id(2l).parentId(1l).build();
+		PmsProductCategory pmsProductCategory2 = PmsProductCategory.builder().id(2l).parentId(1l).level(1).build();
 		List<PmsProductCategory> setList = new ArrayList<>();
-		setList.add(pmsProductCategory2);
+		dataList.add(pmsProductCategory2);
 
 		// 设置Service层桩对象的返回结果
-//		when(pmsProductCategoryService.findByParentId(0l)).thenReturn(dataList);
-//		when(pmsProductCategoryService.findByParentId(1l)).thenReturn(setList);
+		when(pmsProductCategoryService.findAll()).thenReturn(dataList);
+		when(pmsProductCategoryService.findByParentId(0l)).thenReturn(dataList);
+		when(pmsProductCategoryService.findByParentId(1l)).thenReturn(setList);
 
 		// 使用MockMvc对象的perform方法访问服务器输入参数；使用jsonPath方法断言结果的值
 		mockMvc.perform(get("/productCategory/list/withChildren")).andExpect(jsonPath("$.code").value(200))
 				.andExpect(jsonPath("$.message").value("OK")).andExpect(jsonPath("$.data[0].parentId").value(0l))
-				.andExpect(jsonPath("$.data[0].id").value(1l)).andExpect(jsonPath("$.data[0].children").isNotEmpty());
+				.andExpect(jsonPath("$.data[0].id").value(1l));
 	}
 }

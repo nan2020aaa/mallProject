@@ -61,13 +61,8 @@ public class OmsOrderController {
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
-		OmsOrder order = new OmsOrder();
-		order.setOrderSn(orderSn);
-		order.setReceiverName(receiverKeyword);
-		order.setStatus(status);
-		order.setOrderType(orderType);
-		order.setSourceType(sourceType);
-		order.setCreateTime(createTime);
+		OmsOrder order = OmsOrder.builder().orderSn(orderSn).receiverName(receiverKeyword).status(status)
+				.orderType(orderType).sourceType(sourceType).createTime(createTime).build();
 
 		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("orderSn",
 				match -> match.ignoreCase().contains());
@@ -77,10 +72,10 @@ public class OmsOrderController {
 		Page<OmsOrder> orders = orderService.findAll(example, paging);
 		orders.forEach(System.out::println);
 		log.info("ページの導入完成、内容は: " + orders.toList().toString() + ".");
-		
+
 		CommonPage commonPage = CommonPage.builder().list(orders.toList()).pageNum(pageNum).pageSize(pageSize)
-				.total(orders.getTotalElements())
-				.totalPage(orderService.getTotalPageDependsOnContent(pageSize)).build();
+				.total(orders.getTotalElements()).totalPage(orderService.getTotalPageDependsOnContent(pageSize))
+				.build();
 
 		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
 	}

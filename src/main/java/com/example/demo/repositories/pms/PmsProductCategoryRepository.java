@@ -18,8 +18,4 @@ public interface PmsProductCategoryRepository extends JpaRepository<PmsProductCa
 	Page<PmsProductCategory> findByParentId(Long parentId,Pageable paging);
 	
 	Long countByParentId(Long parentId);
-
-//	PmsProductCategory getParentId(Long parentId);
-//
-//	PmsProductCategory getLevel(Integer level);
 }
