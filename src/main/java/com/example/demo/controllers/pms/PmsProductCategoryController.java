@@ -17,11 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.demo.models.pms.PmsProduct;
 import com.example.demo.models.pms.PmsProductCategory;
 import com.example.demo.models.pms.PmsProductCategoryWithChildrenItem;
 import com.example.demo.models.request.PmsProductCategoryParam;
-import com.example.demo.models.request.PmsProductParam;
 import com.example.demo.models.response.CommonPage;
 import com.example.demo.models.response.CommonResult;
 import com.example.demo.services.pms.PmsProductCategoryService;
@@ -60,18 +58,19 @@ public class PmsProductCategoryController {
 		log.info("------------：{}", dataList);
 		List<PmsProductCategory> categoryList = productCategoryService.findAll();
 		log.info("属性を引き出す：{}", categoryList);
-		for (PmsProductCategory e : categoryList) {
+		categoryList.forEach((e) -> {
 			PmsProductCategoryWithChildrenItem tmpInstance = PmsProductCategoryWithChildrenItem.builder().build();
 			BeanUtils.copyProperties(e, tmpInstance);
 			if (tmpInstance.getLevel() == 0) {
 				dataList.add(tmpInstance);
 			}
 			log.info("PmsProductCategoryWithChildrenItemのインスタンス：{}", tmpInstance);
-		}
-		for (PmsProductCategoryWithChildrenItem e : dataList) {
+		});
+
+		dataList.forEach((e) -> {
 			productCategoryService.setChildrenItem(e);
-		}
-		log.info("secondクラス分類：{}", dataList);
+			log.info("secondクラス分類：{}", dataList);
+		});
 
 		return CommonResult.builder().code(200).data(dataList).message("OK").build();
 	}
@@ -97,11 +96,11 @@ public class PmsProductCategoryController {
 		productCategoryService.deleteById(id);
 		return CommonResult.builder().code(200).data(null).message("OK").build();
 	}
-	
+
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@PostMapping("/update/{id}")
-	public CommonResult updateById(@PathVariable Long id,@RequestBody PmsProductCategoryParam productCategoryParam) {
-		PmsProductCategory productCategory = new PmsProductCategory();
+	public CommonResult updateById(@PathVariable Long id, @RequestBody PmsProductCategoryParam productCategoryParam) {
+		PmsProductCategory productCategory = PmsProductCategory.builder().build();
 		productCategory.setId(id);
 		BeanUtils.copyProperties(productCategoryParam, productCategory);
 		productCategoryService.setLevel(productCategory);

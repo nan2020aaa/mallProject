@@ -1,7 +1,6 @@
 package com.example.demo.services.pms;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -46,9 +45,14 @@ public class PmsBrandService {
 		}
 	}
 
-	public Page<PmsBrand> findAll(Example<PmsBrand> example,Pageable paging) {
+	public Page<PmsBrand> findAll(Example<PmsBrand> example, Pageable paging) {
 		log.info("findAllメソッドを呼び出した。");
-		return repository.findAll(example,paging);
+		return repository.findAll(example, paging);
+	}
+	
+	public Page<PmsBrand> findAll(Pageable paging) {
+		log.info("findAllメソッドを呼び出した。");
+		return repository.findAll(paging);
 	}
 
 	public Page<PmsBrand> findByName(String name, Pageable paging) {

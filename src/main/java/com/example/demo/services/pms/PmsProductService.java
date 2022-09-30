@@ -31,10 +31,6 @@ public class PmsProductService {
 		return repository.count();
 	}
 
-//	public Long countProductCategoryId(Long productCategoryId) {
-//		return repository.countByProductCategoryId(productCategoryId);
-//	}
-
 	public Integer getTotalPageDependsOnContent(Integer pageSize) {
 		if (countAll() % pageSize == 0) {
 			log.info("getTotalPageメソッドを呼び出した、要求されたページは内容で満たされている。");
@@ -49,6 +45,11 @@ public class PmsProductService {
 		log.info("findAllメソッドを呼び出した。");
 		return repository.findAll(example, paging);
 	}
+	
+	public Page<PmsProduct> findAll(Pageable paging) {
+		log.info("findAllメソッドを呼び出した。");
+		return repository.findAll(paging);
+	}
 
 	public void delete(List<Long> ids) {
 		repository.deleteAllById(ids);
@@ -59,38 +60,31 @@ public class PmsProductService {
 		List<PmsProduct> pmsProducts = repository.findAllById(ids);
 		log.info("按照ids从数据库里取出商品的list" + pmsProducts);
 		// 更改取出来的商品状态
-		for (PmsProduct pmsProduct : pmsProducts) {
+		pmsProducts.forEach((pmsProduct) -> {
 			pmsProduct.setPublishStatus(publishStatus);
-			// 把更改好的商品状态重新放回数据库
 			repository.save(pmsProduct);
-			log.info("商品上架状态更改成功" + pmsProduct);
-		}
+		});
 	}
-	
+
 	public void updateNewStatus(List<Long> ids, Integer newStatus) {
 		// 按照ids从数据库里取出商品的list
 		List<PmsProduct> pmsProducts = repository.findAllById(ids);
 		log.info("按照ids从数据库里取出商品的list" + pmsProducts);
 		// 更改取出来的商品状态
-		for (PmsProduct pmsProduct : pmsProducts) {
+		pmsProducts.forEach((pmsProduct) -> {
 			pmsProduct.setNewStatus(newStatus);
-			// 把更改好的商品状态重新放回数据库
 			repository.save(pmsProduct);
-			log.info("商品上架状态更改成功" + pmsProduct);
-		}
+		});
 	}
-	
-	
+
 	public void updateRecommendStatus(List<Long> ids, Integer recommendStatus) {
 		// 按照ids从数据库里取出商品的list
 		List<PmsProduct> pmsProducts = repository.findAllById(ids);
 		log.info("按照ids从数据库里取出商品的list" + pmsProducts);
 		// 更改取出来的商品状态
-		for (PmsProduct pmsProduct : pmsProducts) {
+		pmsProducts.forEach((pmsProduct) -> {
 			pmsProduct.setRecommandStatus(recommendStatus);
-			// 把更改好的商品状态重新放回数据库
 			repository.save(pmsProduct);
-			log.info("商品上架状态更改成功" + pmsProduct);
-		}
+		});
 	}
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.models.oms.OmsOrder;
 import com.example.demo.repositories.oms.OmsOrderRepository;
-import com.example.demo.repositories.pms.PmsProductRepository;
 
 import lombok.extern.slf4j.Slf4j;
 

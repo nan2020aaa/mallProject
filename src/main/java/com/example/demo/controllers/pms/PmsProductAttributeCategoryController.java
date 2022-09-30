@@ -100,9 +100,7 @@ public class PmsProductAttributeCategoryController {
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@PostMapping("/update/{id}")
 	public CommonResult updateById(@PathVariable Long id, @RequestParam String name) {
-		PmsProductAttributeCategory data = PmsProductAttributeCategory.builder().build();
-		data.setName(name);
-		data.setId(id);
+		PmsProductAttributeCategory data = PmsProductAttributeCategory.builder().name(name).id(id).build();
 		productAttributeCategoryService.updateById(data);
 		return CommonResult.builder().code(200).data(null).message("OK").build();
 	}

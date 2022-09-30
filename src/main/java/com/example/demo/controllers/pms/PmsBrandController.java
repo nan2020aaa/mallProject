@@ -2,7 +2,6 @@ package com.example.demo.controllers.pms;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.models.pms.PmsBrand;
-import com.example.demo.models.pms.PmsProduct;
 import com.example.demo.models.request.PmsBrandParam;
 import com.example.demo.models.response.CommonPage;
 import com.example.demo.models.response.CommonResult;
@@ -69,8 +67,7 @@ public class PmsBrandController {
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
-		PmsBrand brand = new PmsBrand();
-		brand.setName(keyword);
+		PmsBrand brand = PmsBrand.builder().name(keyword).build();
 
 		// 用example matching的方法查询，大小写自由，包含关系
 		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("name", match -> match.ignoreCase().contains());
@@ -78,13 +75,7 @@ public class PmsBrandController {
 		Example<PmsBrand> example = Example.of(brand, matcher);
 		// 查找并返回页数
 		Page<PmsBrand> brands = brandService.findAll(example, paging);
-		brands.forEach(System.out::println);
 		log.info("ページの導入完成、内容は: " + brands.toList().toString() + ".");
-
-		Long count = 0L;
-		for (PmsBrand e : brands) {
-			count++;
-		}
 
 		CommonPage commonPage = CommonPage.builder().list(brands.toList()).pageNum(pageNum).pageSize(pageSize)
 				.total(brandService.countAll()).totalPage(brandService.getTotalPageDependsOnContent(pageSize)).build();
@@ -101,9 +92,8 @@ public class PmsBrandController {
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@PostMapping("/update/{id}")
 	public CommonResult updateById(@PathVariable Long id, @RequestBody PmsBrandParam pmsBrandParam) {
-		PmsBrand data = PmsBrand.builder().build();
+		PmsBrand data = PmsBrand.builder().id(id).build();
 		BeanUtils.copyProperties(pmsBrandParam, data);
-		data.setId(id);
 		brandService.updateById(data);
 		return CommonResult.builder().code(200).data(null).message("OK").build();
 	}

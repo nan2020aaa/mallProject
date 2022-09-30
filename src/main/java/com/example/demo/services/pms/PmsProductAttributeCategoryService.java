@@ -52,6 +52,6 @@ public class PmsProductAttributeCategoryService {
 	}
 
 	public void updateById(PmsProductAttributeCategory data) {
-		this.create(data);
+		repository.save(data);
 	}
 }
