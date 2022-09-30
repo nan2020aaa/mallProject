@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.models.oms.OmsOrder;
-import com.example.demo.models.pms.PmsProduct;
 import com.example.demo.models.request.OmsOrderParam;
 import com.example.demo.models.response.CommonPage;
 import com.example.demo.models.response.CommonResult;
@@ -50,8 +49,7 @@ public class OmsOrderController {
 			return CommonResult.builder().code(500).data(null).message("System error").build();
 		}
 	}
-	
-	
+
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list")
 
@@ -62,30 +60,21 @@ public class OmsOrderController {
 
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
-		
-		OmsOrder order = new OmsOrder();
-		order.setOrderSn(orderSn);
-		order.setReceiverName(receiverKeyword);
-		order.setStatus(status);
-		order.setOrderType(orderType);
-		order.setSourceType(sourceType);
-		order.setCreateTime(createTime);
-		
-		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("name", match -> match.ignoreCase().contains());
-		
+
+		OmsOrder order = OmsOrder.builder().orderSn(orderSn).receiverName(receiverKeyword).status(status)
+				.orderType(orderType).sourceType(sourceType).createTime(createTime).build();
+
+		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("orderSn",
+				match -> match.ignoreCase().contains());
+
 		Example<OmsOrder> example = Example.of(order, matcher);
-		
+
 		Page<OmsOrder> orders = orderService.findAll(example, paging);
 		orders.forEach(System.out::println);
 		log.info("ページの導入完成、内容は: " + orders.toList().toString() + ".");
-		
-		Long count = 0L;
-		for(OmsOrder e : orders) {
-			count ++;
-		}
-		
+
 		CommonPage commonPage = CommonPage.builder().list(orders.toList()).pageNum(pageNum).pageSize(pageSize)
-				.total(count).totalPage(orderService.getTotalPageDependsOnContent(pageSize))
+				.total(orders.getTotalElements()).totalPage(orderService.getTotalPageDependsOnContent(pageSize))
 				.build();
 
 		return CommonResult.builder().code(200).data(commonPage).message("OK").build();

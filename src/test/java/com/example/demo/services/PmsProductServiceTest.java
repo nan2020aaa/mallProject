@@ -13,7 +13,6 @@ import com.example.demo.services.pms.PmsProductService;
 
 @SpringBootTest
 public class PmsProductServiceTest {
-	private static PmsProductService demo;
 
 	@MockBean
 	private PmsProductRepository pmsProductRepository;

@@ -50,4 +50,8 @@ public class PmsProductAttributeCategoryService {
 	public void deleteById(Long id) {
 		repository.deleteById(id);
 	}
+
+	public void updateById(PmsProductAttributeCategory data) {
+		repository.save(data);
+	}
 }

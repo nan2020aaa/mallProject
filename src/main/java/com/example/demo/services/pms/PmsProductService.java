@@ -1,5 +1,7 @@
 package com.example.demo.services.pms;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -28,10 +30,6 @@ public class PmsProductService {
 		log.info("countメソッドを呼び出した。");
 		return repository.count();
 	}
-	
-//	public Long countProductCategoryId(Long productCategoryId) {
-//		return repository.countByProductCategoryId(productCategoryId);
-//	}
 
 	public Integer getTotalPageDependsOnContent(Integer pageSize) {
 		if (countAll() % pageSize == 0) {
@@ -43,15 +41,50 @@ public class PmsProductService {
 		}
 	}
 
-	public Page<PmsProduct> findAll(Example<PmsProduct> example,Pageable paging) {
+	public Page<PmsProduct> findAll(Example<PmsProduct> example, Pageable paging) {
 		log.info("findAllメソッドを呼び出した。");
 		return repository.findAll(example, paging);
 	}
+	
+	public Page<PmsProduct> findAll(Pageable paging) {
+		log.info("findAllメソッドを呼び出した。");
+		return repository.findAll(paging);
+	}
 
+	public void delete(List<Long> ids) {
+		repository.deleteAllById(ids);
+	}
 
+	public void updatePublishStatus(List<Long> ids, Integer publishStatus) {
+		// 按照ids从数据库里取出商品的list
+		List<PmsProduct> pmsProducts = repository.findAllById(ids);
+		log.info("按照ids从数据库里取出商品的list" + pmsProducts);
+		// 更改取出来的商品状态
+		pmsProducts.forEach((pmsProduct) -> {
+			pmsProduct.setPublishStatus(publishStatus);
+			repository.save(pmsProduct);
+		});
+	}
 
-//	public Page<PmsProduct> findByBrandId(Pageable paging) {
-//		
-//		return repository.findByBrandId(paging);
-//	}
+	public void updateNewStatus(List<Long> ids, Integer newStatus) {
+		// 按照ids从数据库里取出商品的list
+		List<PmsProduct> pmsProducts = repository.findAllById(ids);
+		log.info("按照ids从数据库里取出商品的list" + pmsProducts);
+		// 更改取出来的商品状态
+		pmsProducts.forEach((pmsProduct) -> {
+			pmsProduct.setNewStatus(newStatus);
+			repository.save(pmsProduct);
+		});
+	}
+
+	public void updateRecommendStatus(List<Long> ids, Integer recommendStatus) {
+		// 按照ids从数据库里取出商品的list
+		List<PmsProduct> pmsProducts = repository.findAllById(ids);
+		log.info("按照ids从数据库里取出商品的list" + pmsProducts);
+		// 更改取出来的商品状态
+		pmsProducts.forEach((pmsProduct) -> {
+			pmsProduct.setRecommandStatus(recommendStatus);
+			repository.save(pmsProduct);
+		});
+	}
 }

@@ -55,39 +55,58 @@ public class PmsProductController {
 
 	@ResponseBody // 返回值为 ResponseBody 的内容
 	@GetMapping("/list")
+	public CommonResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize,
+			@RequestParam(required = false) Long brandId, @RequestParam(required = false) String keyword,
+			@RequestParam(required = false) Long productCategoryId, @RequestParam(required = false) String productSn,
+			@RequestParam(required = false) Integer publishStatus,
+			@RequestParam(required = false) Integer verifyStatus) {
 
-	public CommonResult list(@RequestParam Integer pageNum, @RequestParam Integer pageSize,@RequestParam(required=false) Long brandId,
-			@RequestParam(required=false) String keyword, @RequestParam(required=false) Long productCategoryId, @RequestParam(required=false) String productSn,
-		@RequestParam(required=false) Integer publishStatus, @RequestParam(required=false) Integer verifyStatus) {
-	
-       
 		Pageable paging = PageRequest.of(pageNum - 1, pageSize);
 		log.info("pagingというインスタンス作成、pageNum: " + pageNum + "; pageSize: " + pageSize + ".");
 
-		PmsProduct product = new PmsProduct();
-		product.setName(keyword);
-		product.setBrandId(brandId);
-		product.setProductCategoryId(productCategoryId);
-		product.setProductSn(productSn);
-		product.setVerifyStatus(verifyStatus);
-		product.setPublishStatus(publishStatus);
+		PmsProduct product = PmsProduct.builder().name(keyword).brandId(brandId).productCategoryId(productCategoryId)
+				.productSn(productSn).verifyStatus(verifyStatus).publishStatus(publishStatus).build();
+
+		// 用example matching的方法查询，大小写自由，包含关系
 		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("name", match -> match.ignoreCase().contains());
 
 		Example<PmsProduct> example = Example.of(product, matcher);
-
+		// 查找并返回页数
 		Page<PmsProduct> products = productService.findAll(example, paging);
-		products.forEach(System.out::println);
 		log.info("ページの導入完成、内容は: " + products.toList().toString() + ".");
-		
-		Long count = 0L;
-		for(PmsProduct e : products) {
-			count ++;
-		}
 
 		CommonPage commonPage = CommonPage.builder().list(products.toList()).pageNum(pageNum).pageSize(pageSize)
-				.total(count).totalPage(productService.getTotalPageDependsOnContent(pageSize)).build();
+				.total(products.getTotalElements()).totalPage(productService.getTotalPageDependsOnContent(pageSize))
+				.build();
 
 		return CommonResult.builder().code(200).data(commonPage).message("OK").build();
 	}
 
+	@ResponseBody // 返回值为 ResponseBody 的内容
+	@PostMapping("/update/deleteStatus")
+	public CommonResult deleteStatus(@RequestParam Integer deleteStatus, @RequestParam List<Long> ids) {
+		productService.delete(ids);
+		return CommonResult.builder().code(200).data(null).message("OK").build();
+	}
+
+	@ResponseBody // 返回值为 ResponseBody 的内容
+	@PostMapping("/update/publishStatus")
+	public CommonResult publishStatus(@RequestParam List<Long> ids, @RequestParam Integer publishStatus) {
+		productService.updatePublishStatus(ids, publishStatus);
+		return CommonResult.builder().code(200).data(null).message("OK").build();
+	}
+
+	@ResponseBody // 返回值为 ResponseBody 的内容
+	@PostMapping("/update/newStatus")
+	public CommonResult newStatus(@RequestParam List<Long> ids, @RequestParam Integer newStatus) {
+		productService.updateNewStatus(ids, newStatus);
+		return CommonResult.builder().code(200).data(null).message("OK").build();
+	}
+
+	@ResponseBody // 返回值为 ResponseBody 的内容
+	@PostMapping("/update/recommendStatus")
+	public CommonResult recommendStatus(@RequestParam List<Long> ids, @RequestParam Integer recommendStatus) {
+		productService.updateRecommendStatus(ids, recommendStatus);
+		return CommonResult.builder().code(200).data(null).message("OK").build();
+	}
 }

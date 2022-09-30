@@ -46,16 +46,16 @@ public class PmsProductControllerTest {
 		// 构造Product参数表
 		PmsProductParam param = PmsProductParam.builder().build();
 
-		// 将参数表转换为json格式
+		// 将参数表转换为JSON格式
 		ObjectMapper mapper = new ObjectMapper();
 		String paramJson = mapper.writeValueAsString(param);
 
-		// 得到json格式的结果
+		// 得到JSON格式的结果
 		String resultJson = mockMvc
 				.perform(post("/product/create").contentType(MediaType.APPLICATION_JSON).content(paramJson)).andReturn()
 				.getResponse().getContentAsString();
 
-		// 构造期待的结果并转换成json格式
+		// 构造期待的结果并转换成JSON格式
 		CommonResult expectResult = CommonResult.builder().code(200).data(null).message("OK").build();
 		String expectResultJson = mapper.writeValueAsString(expectResult);
 
@@ -71,16 +71,16 @@ public class PmsProductControllerTest {
 		// 构造Product参数表
 		PmsProductParam param = PmsProductParam.builder().build();
 
-		// 将参数表转换为json格式
+		// 将参数表转换为JSON格式
 		ObjectMapper mapper = new ObjectMapper();
 		String paramJson = mapper.writeValueAsString(param);
 
-		// 得到json格式的结果
+		// 得到JSON格式的结果
 		String resultJson = mockMvc
 				.perform(post("/product/create").contentType(MediaType.APPLICATION_JSON).content(paramJson)).andReturn()
 				.getResponse().getContentAsString();
 
-		// 构造期待的结果并转换成json格式
+		// 构造期待的结果并转换成JSON格式
 		CommonResult expectResult = CommonResult.builder().code(500).data(null).message("System error").build();
 		String expectResultJson = mapper.writeValueAsString(expectResult);
 
@@ -101,7 +101,7 @@ public class PmsProductControllerTest {
 
 		// 设置Service层桩对象的返回结果
 
-		//when(pmsProductService.findAll(paging)).thenReturn(page);
+		when(pmsProductService.findAll(any(),any())).thenReturn(page);
 		when(pmsProductService.countAll()).thenReturn(1l);
 		when(pmsProductService.getTotalPageDependsOnContent(2)).thenReturn(1);
 
@@ -124,7 +124,7 @@ public class PmsProductControllerTest {
 		Pageable paging = PageRequest.of(0, 2);
 		Page<PmsProduct> page = new PageImpl<>(list, paging, 1l);
 
-		//when(pmsProductService.findAll(paging)).thenReturn(page);
+		when(pmsProductService.findAll(any(),any())).thenReturn(page);
 		when(pmsProductService.countAll()).thenReturn(2l);
 		when(pmsProductService.getTotalPageDependsOnContent(2)).thenReturn(1);
 
