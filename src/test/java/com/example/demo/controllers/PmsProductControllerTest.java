@@ -101,7 +101,7 @@ public class PmsProductControllerTest {
 
 		// 设置Service层桩对象的返回结果
 
-		when(pmsProductService.findAll(paging)).thenReturn(page);
+		when(pmsProductService.findAll(any(),any())).thenReturn(page);
 		when(pmsProductService.countAll()).thenReturn(1l);
 		when(pmsProductService.getTotalPageDependsOnContent(2)).thenReturn(1);
 
@@ -124,7 +124,7 @@ public class PmsProductControllerTest {
 		Pageable paging = PageRequest.of(0, 2);
 		Page<PmsProduct> page = new PageImpl<>(list, paging, 1l);
 
-		when(pmsProductService.findAll(paging)).thenReturn(page);
+		when(pmsProductService.findAll(any(),any())).thenReturn(page);
 		when(pmsProductService.countAll()).thenReturn(2l);
 		when(pmsProductService.getTotalPageDependsOnContent(2)).thenReturn(1);
 
